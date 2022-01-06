@@ -200,7 +200,7 @@ export default {
     get_mysql_stat_his (parameter) {
       getMysqlStatHis(parameter).then(res => {
         this.mysqlinfoList = res.data.results
-        this.checktimeData = this.mysqlinfoList.map(mysql => formatDate(new Date(mysql.check_time), 'yyyy-MM-dd hh:mm') )
+        this.checktimeData = this.mysqlinfoList.map(mysql => formatDate(new Date(mysql.check_time), 'yyyy-MM-dd hh:mm'))
         this.qpsData = this.mysqlinfoList.map(mysql => mysql.qps)
         this.tpsData = this.mysqlinfoList.map(mysql => mysql.tps)
         this.threadsconnectedData = this.mysqlinfoList.map(mysql => mysql.threads_connected)

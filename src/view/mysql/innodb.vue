@@ -48,7 +48,7 @@
 import { MysqlMenu } from '_c/top-menu'
 import { getMysqlStat, getMysqlStatHis } from '@/api/mysql'
 import { ChartPie, ChartLine1, ChartLine2, ChartLine3, ChartLine4 } from '_c/charts'
-import {formatDate} from "../../libs/tools";
+import { formatDate } from '../../libs/tools'
 
 export default {
   name: 'mysql_myisam',

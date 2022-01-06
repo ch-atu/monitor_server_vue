@@ -105,8 +105,8 @@ export default {
             if (maxmemory >= 0) {
               console.log('memory_rate:', memory_rate, typeof memory_rate)
             }
-            if (isNaN(memory_rate)){
-              return h('i-progress', { props: { percent: 0 ,status:'wrong'} })
+            if (isNaN(memory_rate)) {
+              return h('i-progress', { props: { percent: 0, status: 'wrong' } })
             }
             if (memory_rate === 'Infinity') {
               console.log('Infinity执行了')
