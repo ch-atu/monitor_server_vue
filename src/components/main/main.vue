@@ -17,11 +17,8 @@
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <div class="logo-con">
           <img v-show="!collapsed"
-               :src="maxLogo"
-               key="max-logo" />
-<!--          <img v-show="!collapsed"-->
-<!--               :src="minLogo"-->
-<!--               key="min-logo" />-->
+               :src="fdyLogo"
+               key="fdy-logo"  alt="泛地缘监控平台"/>
         </div>
       </side-menu>
     </Sider>
@@ -75,8 +72,7 @@ import ErrorStore from './components/error-store'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, routeEqual } from '@/libs/util'
 import routers from '@/router/routers'
-import minLogo from '@/assets/images/logo-min.jpg'
-import maxLogo from '@/assets/images/logo-max.jpg'
+import fdyLogo from '@/assets/images/logo-fdy.png'
 import './main.less'
 export default {
   name: 'Main',
@@ -93,8 +89,7 @@ export default {
   data () {
     return {
       collapsed: false,
-      minLogo,
-      maxLogo,
+      fdyLogo,
       isFullscreen: false
     }
   },
