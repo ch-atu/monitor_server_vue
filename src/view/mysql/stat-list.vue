@@ -4,7 +4,7 @@
       <Row>
         <Input v-model="host_search"
                placeholder="ip地址"
-               style="width: 100px" />&nbsp;
+               style="width: 160px" />&nbsp;
         <Button @click="search"
                 type="primary">搜索</Button>&nbsp;
         <Button @click="clear_search"

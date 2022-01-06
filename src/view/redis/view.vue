@@ -222,7 +222,7 @@ export default {
     get_redis_stat_his (parameter) {
       getRedisStatHis(parameter).then(res => {
         this.redisinfoList = res.data.results
-        this.checktimeData = this.redisinfoList.map(redis => redis.check_time)
+        this.checktimeData = this.redisinfoList.map(redis => formatDate(new Date(redis.check_time), 'yyyy-MM-dd hh:mm'))
         this.memData = this.redisinfoList.map(redis => redis.used_memory)
         this.net_inputData = this.redisinfoList.map(redis => (Number(redis.net_input_byte) / 1024).toFixed(2))
         this.net_outData = this.redisinfoList.map(redis => (Number(redis.net_out_byte) / 1024).toFixed(2))

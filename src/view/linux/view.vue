@@ -220,7 +220,6 @@ export default {
         // this.checktimeData = this.linuxinfoList.map(linux => linux.check_time)
         this.checktimeData = this.linuxinfoList.map(
           linux => {
-            console.log('linux.check_time的值是：', linux.check_time)
             return formatDate(new Date(linux.check_time), 'yyyy-MM-dd hh:mm')
           })
         console.log('this.checktimeData:的值是：', this.checktimeData)
