@@ -156,6 +156,7 @@ export default {
       columns: [
         {
           type: 'index',
+          title: '序号',
           width: 80,
           align: 'center',
           sortable: true
@@ -194,7 +195,7 @@ export default {
           title: '阈值说明',
           key: 'judge_des',
           width: 215
-        },
+        }
         // todo 暂时不用
         // {
         //   title: '操作',
