@@ -63,6 +63,11 @@
                   :description="info.alarm_content"
                 />
               </ListItem>
+              <Alert show-icon fade="true" v-show="!alarm_count">
+                <span>Tips</span>
+                <Icon type="ios-bulb-outline" slot="icon"></Icon>
+                <template slot="desc">今日暂未发现任何告警消息！</template>
+              </Alert>
             </List>
           </Scroll>
         </card>
