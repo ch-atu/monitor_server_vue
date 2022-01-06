@@ -195,6 +195,7 @@ export default {
           key: 'judge_des',
           width: 215
         },
+        // todo 暂时不用
         // {
         //   title: '操作',
         //   key: 'action',
