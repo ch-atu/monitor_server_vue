@@ -95,16 +95,16 @@ export default {
           key: 'threads_waited',
           width: 100
         },
-        {
-          title: 'QPS',
-          key: 'qps',
-          width: 70
-        },
-        {
-          title: 'TPS',
-          key: 'tps',
-          width: 70
-        },
+        // {
+        //   title: 'QPS',
+        //   key: 'qps',
+        //   width: 70
+        // },
+        // {
+        //   title: 'TPS',
+        //   key: 'tps',
+        //   width: 70
+        // },
         {
           title: '状态',
           key: 'status',

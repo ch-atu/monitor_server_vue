@@ -15,7 +15,6 @@
         <Table size="small" border
                :columns="columns"
                :data="data">
-
         </Table>
       </Row>
       <Row>
@@ -62,7 +61,7 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: 150,
+          width: 135,
           sortable: true
         },
         {
@@ -119,16 +118,6 @@ export default {
           }
         },
         {
-          title: '入流量(kb)',
-          key: 'recv_kbps',
-          width: 100
-        },
-        {
-          title: '出流量(kb)',
-          key: 'send_kbps',
-          width: 100
-        },
-        {
           title: '状态',
           key: 'status',
           width: 90,
@@ -140,7 +129,7 @@ export default {
             const status = params.row.status
             return h(Tag, { props: { color: levelMap[status]['color'] } }, levelMap[status]['desc'])
           },
-          fixed: 'right'
+          // fixed: 'right'
         },
         {
           title: '采集时间',
@@ -206,7 +195,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .demo-drawer-footer {
   width: 100%;
   position: absolute;
@@ -225,4 +214,8 @@ export default {
   background-color: #22d489;
   color: #fff;
 }
+
+/*.ivu-table-wrapper{*/
+/*  width: 1045px;*/
+/*}*/
 </style>

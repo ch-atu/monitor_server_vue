@@ -80,11 +80,11 @@ export default {
           key: 'updays',
           width: 90
         },
-        {
-          title: '对象数',
-          key: 'total_keys',
-          width: 100
-        },
+        // {
+        //   title: '对象数',
+        //   key: 'total_keys',
+        //   width: 100
+        // },
         {
           title: '最大内存配置',
           key: 'maxmemory',
