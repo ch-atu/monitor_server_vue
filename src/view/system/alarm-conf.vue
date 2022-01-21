@@ -156,14 +156,14 @@ export default {
       columns: [
         {
           type: 'index',
-          width: 80,
+          width: '80%',
           align: 'center',
           sortable: true
         },
         {
           title: '告警类型',
           key: 'type',
-          width: 160,
+          width: '120%',
           render: (h, params) => {
             const typeMap = {
               1: { desc: 'Oracle数据库' },
@@ -178,23 +178,23 @@ export default {
         {
           title: '告警名称',
           key: 'name',
-          width: 240
+          width: '180%'
         },
         {
           title: '运算符',
           key: 'judge',
-          width: 120
+          width: '180%'
         },
         {
           title: '阈值',
           key: 'judge_value',
-          width: 120
+          width: '200%'
         },
         {
           title: '阈值说明',
-          key: 'judge_des',
-          width: 215
-        },
+          key: 'judge_des'
+          // width: 215
+        }
         // todo 暂时不用
         // {
         //   title: '操作',
@@ -449,7 +449,6 @@ export default {
 }
 
 .ivu-table-wrapper{
-  width: 938px;
   margin: 0 auto 0 auto;
 }
 </style>

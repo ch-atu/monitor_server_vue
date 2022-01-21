@@ -46,7 +46,7 @@ export default {
         },
         {
           title: '标签',
-          width: 100,
+          width: '80%',
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -62,38 +62,38 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: 150,
+          width: '120%',
           sortable: true
         },
         {
           title: '端口',
           key: 'port',
-          width: 80
+          width: '80%'
         },
         {
           title: '版本',
           key: 'version',
-          width: 100
+          width: '100%'
         },
         {
           title: '运行天数',
           key: 'updays',
-          width: 90
+          width: '100%'
         },
         {
           title: '连接线程数',
           key: 'threads_connected',
-          width: 100
+          width: '100%'
         },
         {
           title: '活动线程数',
           key: 'threads_running',
-          width: 100
+          width: '100%'
         },
         {
           title: '等待线程数',
           key: 'threads_waited',
-          width: 100
+          width: '100%'
         },
         // {
         //   title: 'QPS',
@@ -108,7 +108,7 @@ export default {
         {
           title: '采集时间',
           key: 'check_time',
-          width: 140,
+          // width: 140,
           render: (h, params) => {
             return h('div',
               formatDate(new Date(params.row.check_time), 'yyyy-MM-dd hh:mm')
@@ -118,7 +118,7 @@ export default {
         {
           title: '状态',
           key: 'status',
-          width: 90,
+          width: '100%',
           render: (h, params) => {
             const levelMap = {
               0: { color: 'green', desc: '正常' },
@@ -126,9 +126,9 @@ export default {
             }
             const status = params.row.status
             return h(Tag, { props: { color: levelMap[status]['color'] } }, levelMap[status]['desc'])
-          },
+          }
           // fixed: 'right'
-        },
+        }
 
       ],
       data: [],
@@ -209,7 +209,6 @@ export default {
 }
 
 .ivu-table-wrapper{
-  width: 1045px;
   margin: 0 auto 0 auto;
 }
 </style>

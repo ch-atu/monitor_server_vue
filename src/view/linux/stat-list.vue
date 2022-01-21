@@ -42,12 +42,12 @@ export default {
       columns: [
         {
           type: 'index',
-          width: 60,
+          width: '50%',
           align: 'center'
         },
         {
           title: '标签',
-          width: 100,
+          width: '80%',
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -63,28 +63,28 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: 135,
+          width: '120%',
           sortable: true
         },
         {
           title: '主机名',
           key: 'hostname',
-          width: 160
+          width: '130%'
         },
         {
           title: '运行天数',
           key: 'updays',
-          width: 90
+          width: '85%'
         },
         {
           title: 'load',
           key: 'load1',
-          width: 70
+          width: '80%'
         },
         {
           title: 'CPU使用率',
           key: 'cpu_used',
-          width: 100,
+          width: '100%',
           render: (h, params) => {
             const cpu_used = params.row.cpu_used
             if (cpu_used >= 90) {
@@ -103,7 +103,7 @@ export default {
         {
           title: '内存使用率',
           key: 'mem_used',
-          width: 100,
+          width: '100%',
           render: (h, params) => {
             const mem_used = params.row.mem_used
             if (mem_used >= 90) {
@@ -122,7 +122,7 @@ export default {
         {
           title: '采集时间',
           key: 'check_time',
-          width: 140,
+          // width: '100%',
           render: (h, params) => {
             console.log('h的值：', h)
             console.log('params的值是：', params)
@@ -134,7 +134,7 @@ export default {
         {
           title: '状态',
           key: 'status',
-          width: 90,
+          width: '100%',
           render: (h, params) => {
             const levelMap = {
               0: { color: 'green', desc: '正常' },
@@ -142,9 +142,9 @@ export default {
             }
             const status = params.row.status
             return h(Tag, { props: { color: levelMap[status]['color'] } }, levelMap[status]['desc'])
-          },
+          }
           // fixed: 'right'
-        },
+        }
 
       ],
       data: [],
@@ -219,7 +219,6 @@ export default {
 }
 
 .ivu-table-wrapper{
-  width: 1045px;
   margin: 0 auto 0 auto;
 }
 </style>

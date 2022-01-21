@@ -41,12 +41,12 @@ export default {
       columns: [
         {
           type: 'index',
-          width: 60,
+          width: '50%',
           align: 'center'
         },
         {
           title: '标签',
-          width: 100,
+          width: '80%',
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -62,23 +62,23 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: 150,
+          width: '120%',
           sortable: true
         },
         {
           title: '端口',
           key: 'port',
-          width: 80
+          width: '80%'
         },
         {
           title: '版本',
           key: 'version',
-          width: 100
+          width: '80%'
         },
         {
           title: '运行天数',
           key: 'updays',
-          width: 90
+          width: '100%'
         },
         // {
         //   title: '对象数',
@@ -88,7 +88,7 @@ export default {
         {
           title: '最大内存配置',
           key: 'maxmemory',
-          width: 120,
+          width: '110%',
           render: (h, params) => {
             const maxmemory = Number(params.row.maxmemory / 1024 / 1024).toFixed(2)
             return h('div', maxmemory + 'MB')
@@ -97,7 +97,7 @@ export default {
         {
           title: '内存使用率',
           key: 'maxmemory,used_memory',
-          width: 150,
+          width: '100%',
           render: (h, params) => {
             const maxmemory = Number(params.row.maxmemory / 1024 / 1024).toFixed(2)
             const used_memory = params.row.used_memory
@@ -105,8 +105,8 @@ export default {
             if (maxmemory >= 0) {
               console.log('memory_rate:', memory_rate, typeof memory_rate)
             }
-            if (isNaN(memory_rate)){
-              return h('i-progress', { props: { percent: 0 ,status:'wrong'} })
+            if (isNaN(memory_rate)) {
+              return h('i-progress', { props: { percent: 0, status: 'wrong' } })
             }
             if (memory_rate === 'Infinity') {
               console.log('Infinity执行了')
@@ -126,17 +126,17 @@ export default {
         {
           title: '连接数',
           key: 'connected_clients',
-          width: 100
+          width: '75%'
         },
         {
           title: '角色',
           key: 'role',
-          width: 100
+          width: '75%'
         },
         {
           title: '采集时间',
           key: 'check_time',
-          width: 140,
+          // width: 140,
           render: (h, params) => {
             return h('div',
               formatDate(new Date(params.row.check_time), 'yyyy-MM-dd hh:mm')
@@ -146,7 +146,7 @@ export default {
         {
           title: '状态',
           key: 'status',
-          width: 90,
+          width: '85%',
           render: (h, params) => {
             const levelMap = {
               0: { color: 'green', desc: '正常' },
@@ -154,10 +154,9 @@ export default {
             }
             const status = params.row.status
             return h(Tag, { props: { color: levelMap[status]['color'] } }, levelMap[status]['desc'])
-          },
+          }
           // fixed: 'right'
-        },
-
+        }
 
         // todo 未开放功能
         // {
@@ -281,7 +280,6 @@ export default {
 }
 
 .ivu-table-wrapper{
-  width: 1045px;
   margin: 0 auto 0 auto;
 }
 </style>

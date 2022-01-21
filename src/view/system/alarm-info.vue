@@ -42,33 +42,33 @@ export default {
       columns: [
         {
           type: 'index',
-          width: 60,
+          width: '50%',
           align: 'center'
         },
         {
           title: '标签',
           key: 'tags',
-          width: 80
+          width: '100%'
         },
         {
           title: '告警名称',
           key: 'alarm_type',
-          width: 150
+          width: '150%'
         },
         {
           title: '服务地址',
           key: 'url',
-          width: 120
+          width: '120%'
         },
         {
           title: '告警内容',
-          key: 'alarm_content',
-          width: 400
+          key: 'alarm_content'
+          // width: 400
         },
         {
           title: '告警时间',
           key: 'alarm_time',
-          width: 140,
+          // width: 140,
           sortable: true,
           render: (h, params) => {
             return h('div', formatDate(new Date(params.row.alarm_time), 'yyyy-MM-dd hh:mm')
@@ -192,7 +192,6 @@ export default {
 </script>
 <style scoped>
 .ivu-table-wrapper{
-  width: 950px;
   margin: 0 auto 0 auto;
 }
 

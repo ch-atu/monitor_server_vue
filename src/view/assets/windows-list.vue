@@ -293,32 +293,32 @@ export default {
         {
           title: '标签',
           key: 'tags',
-          width: 120
+          width: '100%'
         },
         {
           title: 'IP地址',
           key: 'host',
-          width: 150
+          width: '120%'
         },
         {
           title: '主机名',
           key: 'hostname',
-          width: 160
+          width: '100%'
         },
         {
           title: 'linux版本',
           key: 'linux_version',
-          width: 100
+          width: '100%'
         },
         {
           title: '连接用户名',
           key: 'user',
-          width: 110
+          width: '100%'
         },
         {
           title: '状态',
           key: 'status',
-          width: 90,
+          width: '100%',
           render: (h, params) => {
             const statusMap = {
               0: { color: 'green', desc: '在线' },
@@ -335,12 +335,12 @@ export default {
         {
           title: '业务系统',
           key: 'bussiness_system',
-          width: 90
+          width: '120%'
         },
         {
           title: '系统等级',
           key: 'system_level',
-          width: 120,
+          width: '120%',
           render: (h, params) => {
             const levelMap = {
               0: { color: 'red', desc: '核心系统' },
@@ -354,7 +354,7 @@ export default {
         {
           title: '操作',
           key: 'action',
-          width: 200,
+          // width: '120%',
           align: 'center',
           render: (h, params) => {
             console.log('操作中的params的值是：', params)
@@ -680,7 +680,6 @@ export default {
 }
 
 .ivu-table-wrapper{
-  width: 1045px;
   margin: 0 auto 0 auto;
 }
 </style>
