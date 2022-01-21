@@ -1,15 +1,15 @@
 <template>
   <Row>
+    <Row>
+      <Input v-model="host_search"
+             placeholder="ip地址"
+             style="width: 100px" />&nbsp;
+      <Button @click="search"
+              type="primary">搜索</Button>&nbsp;
+      <Button @click="clear_search"
+              type="success">刷新</Button>
+    </Row>
     <Card>
-      <Row>
-        <Input v-model="host_search"
-               placeholder="ip地址"
-               style="width: 100px" />&nbsp;
-        <Button @click="search"
-                type="primary">搜索</Button>&nbsp;
-        <Button @click="clear_search"
-                type="success">刷新</Button>
-      </Row>
       <br>
       <Row>
         <Table size="small" border
@@ -118,6 +118,18 @@ export default {
           }
         },
         {
+          title: '采集时间',
+          key: 'check_time',
+          width: 140,
+          render: (h, params) => {
+            console.log('h的值：', h)
+            console.log('params的值是：', params)
+            return h('div',
+              formatDate(new Date(params.row.check_time), 'yyyy-MM-dd hh:mm')
+            )
+          }
+        },
+        {
           title: '状态',
           key: 'status',
           width: 90,
@@ -131,18 +143,7 @@ export default {
           },
           // fixed: 'right'
         },
-        {
-          title: '采集时间',
-          key: 'check_time',
-          width: 140,
-          render: (h, params) => {
-            console.log('h的值：', h)
-            console.log('params的值是：', params)
-            return h('div',
-              formatDate(new Date(params.row.check_time), 'yyyy-MM-dd hh:mm')
-            )
-          }
-        }
+
       ],
       data: [],
       count: 0,
@@ -215,7 +216,8 @@ export default {
   color: #fff;
 }
 
-/*.ivu-table-wrapper{*/
-/*  width: 1045px;*/
-/*}*/
+.ivu-table-wrapper{
+  width: 1045px;
+  margin: 0 auto 0 auto;
+}
 </style>

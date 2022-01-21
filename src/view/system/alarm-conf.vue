@@ -1,19 +1,19 @@
 <template>
   <Row>
+    <Row>
+      <!--        todo 暂时不用-->
+      <!--        <Button @click="add"-->
+      <!--                v-if="addAccessAll"-->
+      <!--                type="primary">添加</Button>&nbsp;-->
+      <Input v-model="alarm_name_search"
+             placeholder="告警名称"
+             style="width: 200px" />&nbsp;
+      <Button @click="search"
+              type="primary">搜索</Button>&nbsp;
+      <Button @click="clear_search"
+              type="success">刷新</Button>
+    </Row>
     <Card>
-      <Row>
-<!--        todo 暂时不用-->
-<!--        <Button @click="add"-->
-<!--                v-if="addAccessAll"-->
-<!--                type="primary">添加</Button>&nbsp;-->
-        <Input v-model="alarm_name_search"
-               placeholder="告警名称"
-               style="width: 200px" />&nbsp;
-        <Button @click="search"
-                type="primary">搜索</Button>&nbsp;
-        <Button @click="clear_search"
-                type="success">刷新</Button>
-      </Row>
       <br>
       <Row>
         <Table border
@@ -436,7 +436,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .demo-drawer-footer {
   width: 100%;
   position: absolute;
@@ -446,5 +446,10 @@ export default {
   padding: 10px 16px;
   text-align: right;
   background: #fff;
+}
+
+.ivu-table-wrapper{
+  width: 938px;
+  margin: 0 auto 0 auto;
 }
 </style>

@@ -191,23 +191,9 @@ export default {
 }
 </script>
 <style scoped>
-/*.demo-drawer-footer {*/
-/*  width: 100%;*/
-/*  position: absolute;*/
-/*  bottom: 0;*/
-/*  left: 0;*/
-/*  border-top: 1px solid #e8e8e8;*/
-/*  padding: 10px 16px;*/
-/*  text-align: right;*/
-/*  background: #fff;*/
-/*}*/
-/*.ivu-table .demo-table-info-cell-danger {*/
-/*  background-color: #d40f35;*/
-/*  color: #fff;*/
-/*}*/
-/*.ivu-table .demo-table-info-cell-mormal {*/
-/*  background-color: #22d489;*/
-/*  color: #fff;*/
-/*}*/
+.ivu-table-wrapper{
+  width: 950px;
+  margin: 0 auto 0 auto;
+}
 
 </style>
