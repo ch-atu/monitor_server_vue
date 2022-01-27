@@ -112,3 +112,47 @@ export const deleteRedisStat = host => {
     method: 'delete'
   })
 }
+
+export const createWindows = data => {
+  return axios.request({
+    url: '/assets/api/windows',
+    data: data,
+    method: 'post'
+  })
+}
+
+export const getWindowsList = parameter => {
+  return axios.request({
+    url: `/assets/api/windows?${parameter}`,
+    method: 'get'
+  })
+}
+
+export const deleteWindows = id => {
+  return axios.request({
+    url: `/assets/api/windows/${id}`,
+    method: 'delete'
+  })
+}
+
+export const updateWindows = (id, data) => {
+  return axios.request({
+    url: `/assets/api/windows/${id}`,
+    data: data,
+    method: 'PUT'
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

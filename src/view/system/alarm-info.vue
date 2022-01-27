@@ -8,6 +8,7 @@
          <Button icon="md-download" :loading="exportLoading" @click="exportExcel">导出文件</Button>
          <day-select style="margin-left: 5px" @change_select="get_select_alarm_info"></day-select>
           <Card>
+            <br>
               <Table size="small"
                      :columns="columns"
                      :data="data">

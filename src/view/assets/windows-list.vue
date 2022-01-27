@@ -6,7 +6,7 @@
               type="primary">添加</Button>&nbsp
       <Input v-model="host_search"
              placeholder="ip地址"
-             style="width: 100px" />&nbsp
+             style="width: 180px" />&nbsp
       <Button @click="search"
               type="primary">搜索</Button>&nbsp
       <Button @click="clear_search"
@@ -25,7 +25,7 @@
         <br>
         <Page :total="count"
               :page_size='page_size'
-              @on-change="get_linux_parameter"
+              @on-change="get_windows_parameter"
               show-elevator
               show-total />
       </Row>
@@ -73,7 +73,7 @@
               <Col span="8">
                 <FormItem label="Windows版本"
                           label-position="top"
-                          prop="db_version">
+                          prop="windows_version">
                   <Select v-model="formData.windows_version"
                           placeholder="请选择Windows版本">
                     <Option value="Windows7">Windows7</Option>
@@ -85,8 +85,8 @@
               <Col span="8">
                 <FormItem label="内核版本"
                           label-position="top"
-                          prop="db_version">
-                  <Input v-model="formData.linux_kernel"
+                          prop="windows_kernel">
+                  <Input v-model="formData.windows_kernel"
                          placeholder="内核">
                   </Input>
                 </FormItem>
@@ -114,11 +114,11 @@
                 </FormItem>
               </Col>
               <Col span="6">
-                <FormItem label="操作系统ssh端口号"
+                <FormItem label="操作系统winrm端口号"
                           label-position="top"
-                          prop="sshport">
-                  <InputNumber v-model="formData.sshport"
-                               placeholder="操作系统ssh端口号">
+                          prop="winrm_port">
+                  <InputNumber v-model="formData.winrm_port"
+                               placeholder="操作系统winrm端口号">
                   </InputNumber>
                 </FormItem>
               </Col>
@@ -233,6 +233,7 @@
                 </FormItem>
               </Col>
             </Row>
+
             <Alert show-icon>告警配置</Alert>
             <Row :gutter="32">
               <div>
@@ -251,6 +252,7 @@
                 </Form>
               </div>
             </Row>
+
           </Form>
           <div class="demo-drawer-footer" v-show="showfooter" >
             <Button style="margin-right: 8px"
@@ -262,6 +264,7 @@
 
       </Row>
 
+<!--      todo 预留模块，暂时没用-->
       <Modal width="80"
              v-model="webssh"
              title="Common Modal dialog box title"
@@ -282,7 +285,7 @@
 </template>
 
 <script>
-import { getLinuxList, createLinux, updateLinux, deleteLinux, deleteLinuxStat } from '@/api/assets'
+import { getWindowsList, createWindows, updateWindows, deleteWindows, deleteLinuxStat } from '@/api/assets'
 import { hasOneOf } from '@/libs/tools'
 import { Tag } from 'iview'
 export default {
@@ -354,9 +357,10 @@ export default {
         {
           title: '操作',
           key: 'action',
-          // width: '120%',
+          // width: '500%',
           align: 'center',
           render: (h, params) => {
+            console.log('h的值为：', h);
             console.log('操作中的params的值是：', params)
             return h('div', [
               h('Button', {
@@ -368,7 +372,6 @@ export default {
                   marginRight: '5px'
                 },
                 on: {
-
                   click: () => {
                     this.show = true
                     this.view(params.index)
@@ -438,9 +441,10 @@ export default {
         host: '',
         hostname: '',
         windows_version: 'Windows7',
+        windows_kernel:'',
         user: '',
         password: '',
-        sshport: 22,
+        winrm_port: 5985,
         // 序列号
         serialno: '',
         status: '0',
@@ -489,7 +493,7 @@ export default {
     }
   },
   created () {
-    this.get_linux_list()
+    this.get_windows_list()
   },
   computed: {
     access () {
@@ -514,25 +518,25 @@ export default {
     },
     search () {
       console.log(this.host_search)
-      this.get_linux_list(`host=${this.host_search}`)
+      this.get_windows_list(`host=${this.host_search}`)
     },
     clear_search () {
       this.host_search = ''
-      this.get_linux_list()
+      this.get_windows_list()
     },
-    get_linux_list (parameter) {
-      getLinuxList(parameter).then(res => {
-        console.log('查询的linux数据是：', res)
+    get_windows_list (parameter) {
+      getWindowsList(parameter).then(res => {
+        console.log('查询的windows数据是：', res)
         this.data = res.data.results
         this.count = res.data.count
-        console.log('get_linux_list', this.data)
+        console.log('getWindowsList', this.data)
       }).catch(err => {
-        this.$Message.error(`获取linux资源信息错误 ${err}`)
+        this.$Message.error(`获取windows资源信息错误 ${err}`)
       })
     },
-    get_linux_parameter (parameter) {
+    get_windows_parameter (parameter) {
       console.log(parameter)
-      this.get_linux_list(`page=${parameter}`)
+      this.get_windows_list(`page=${parameter}`)
     },
     view (index) {
       this.update(index)
@@ -544,15 +548,16 @@ export default {
         if (valid) {
           // 新增
           if (!this.updateId) {
-            createLinux(this.formData).then(res => {
+            createWindows(this.formData).then(res => {
               console.log(res)
               this.$Message.success('新增windows配置成功!')
-              this.get_linux_list()
+              this.get_windows_list()
               this.create = false
             }).catch(err => {
-              console.log(err.response)
+              console.log(err.response.data)
+              console.log(Object.entries(err.response.data))
               this.$Message.error({
-                content: `新增windows配置错误 ${Object.entries(err.response.data)}`,
+                content: `新增windows配置错误：${Object.entries(err.response.data)}`,
                 duration: 10,
                 closable: true
               })
@@ -561,15 +566,15 @@ export default {
           // 修改
           else {
             console.log(this.updateId)
-            updateLinux(this.updateId, this.formData).then(res => {
+            updateWindows(this.updateId, this.formData).then(res => {
               console.log(res)
-              this.$Message.success('更新linux配置成功!')
-              this.get_linux_list()
+              this.$Message.success('更新windows配置成功!')
+              this.get_windows_list()
               this.create = false
             }).catch(err => {
               console.log(err.response)
               this.$Message.error({
-                content: `更新linux配置错误 ${Object.entries(err.response.data)}`,
+                content: `更新windows配置错误 ${Object.entries(err.response.data)}`,
                 duration: 10,
                 closable: true
               })
@@ -590,11 +595,11 @@ export default {
       this.formData.tags = ''
       this.formData.host = ''
       this.formData.hostname = ''
-      this.formData.db_version = 'Linux6'
-      this.formData.linux_kernel = ''
+      this.formData.windows_version = 'Windows7'
+      this.formData.windows_kernel = ''
       this.formData.user = ''
       this.formData.password = ''
-      this.formData.sshport = 22
+      this.formData.winrm_port = 5985
       this.formData.serialno = ''
       this.formData.status = '0'
       this.formData.cabinet = ''
@@ -616,17 +621,17 @@ export default {
     },
     remove (index, id, host) {
       console.log('要删除的index，id，host：', index, id, host)
-      deleteLinux(id).then(res => {
-        console.log('deleteLinux:', res)
-        deleteLinuxStat(host).then(res => {
-          console.log('deleteLinuxStat:', res)
-        })
-        this.$Message.success('删除linux配置成功!')
+      deleteWindows(id).then(res => {
+        console.log('deleteWindows:', res)
+        // deleteLinuxStat(host).then(res => {
+        //   console.log('deleteLinuxStat:', res)
+        // })
+        this.$Message.success('删除windows配置成功!')
         this.data.splice(index, 1)
       }).catch(err => {
         console.log(err.response)
         this.$Message.error({
-          content: `删除linux配置错误 ${Object.entries(err.response.data)}`,
+          content: `删除lwindows配置错误 ${Object.entries(err.response.data)}`,
           duration: 10,
           closable: true
         })
@@ -640,11 +645,11 @@ export default {
       this.formData.tags = this.data[index].tags
       this.formData.host = this.data[index].host
       this.formData.hostname = this.data[index].hostname
-      this.formData.linux_version = this.data[index].linux_version
-      this.formData.linux_kernel = this.data[index].linux_kernel
+      this.formData.windows_version = this.data[index].windows_version
+      this.formData.windows_kernel = this.data[index].windows_kernel
       this.formData.user = this.data[index].user
       this.formData.password = this.data[index].password
-      this.formData.sshport = this.data[index].sshport
+      this.formData.winrm_port = this.data[index].winrm_port
       this.formData.serialno = this.data[index].serialno
       this.formData.status = String(this.data[index].status)
       this.formData.cabinet = this.data[index].cabinet

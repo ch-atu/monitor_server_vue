@@ -3,7 +3,7 @@
     <Row>
       <Input v-model="host_search"
              placeholder="ip地址"
-             style="width: 100px" />&nbsp;
+             style="width: 180px" />&nbsp;
       <Button @click="search"
               type="primary">搜索</Button>&nbsp;
       <Button @click="clear_search"
@@ -21,7 +21,7 @@
         <br>
         <Page :total="count"
               :page_size='page_size'
-              @on-change="get_linux_parameter"
+              @on-change="get_windows_parameter"
               show-elevator
               show-total />
       </Row>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { getLinuxStatList } from '@/api/linux'
+import { getWindowsStatList } from '@/api/windows'
 import { formatDate } from '@/libs/tools'
 import { Tag } from 'iview'
 export default {
@@ -40,7 +40,7 @@ export default {
       columns: [
         {
           type: 'index',
-          width: '50%',
+          width: '80%',
           align: 'center'
         },
         {
@@ -52,7 +52,7 @@ export default {
             return h('a', {
               on: {
                 'click': () => {
-                  this.gotoLinux(tags)
+                  this.gotoWindows(tags)
                 }
               }
             }, tags)
@@ -72,48 +72,62 @@ export default {
         {
           title: '运行天数',
           key: 'updays',
-          width: '85%'
+          width: '116%'
         },
         {
-          title: 'load',
-          key: 'load1',
-          width: '80%'
+          title: '虚拟内存使用率',
+          key: 'virtual_mem_used_rate',
+          width: '130%',
+          render: (h, params) => {
+            const virtual_mem_used_rate = params.row.virtual_mem_used_rate
+            if (virtual_mem_used_rate >= 90) {
+              return h(Tag, { props: { color: 'error' } }, virtual_mem_used_rate + '%')
+            }
+            if (virtual_mem_used_rate >= 80) {
+              return h(Tag, { props: { color: 'warning' } }, virtual_mem_used_rate + '%')
+            }
+            if (virtual_mem_used_rate === null) {
+              return null
+            } else {
+              return h(Tag, { props: { color: 'success' } }, virtual_mem_used_rate + '%')
+            }
+          }
         },
         {
           title: 'CPU使用率',
-          key: 'cpu_used',
+          key: 'cpu_used_rate',
           width: '100%',
           render: (h, params) => {
-            const cpu_used = params.row.cpu_used
-            if (cpu_used >= 90) {
-              return h(Tag, { props: { color: 'error' } }, cpu_used + '%')
+            const cpu_used_rate = params.row.cpu_used_rate
+            if (cpu_used_rate >= 90) {
+              return h(Tag, { props: { color: 'error' } }, cpu_used_rate + '%')
             }
-            if (cpu_used >= 80) {
-              return h(Tag, { props: { color: 'warning' } }, cpu_used + '%')
+            if (cpu_used_rate >= 80) {
+              return h(Tag, { props: { color: 'warning' } }, cpu_used_rate + '%')
             }
-            if (cpu_used === null) {
+            if (cpu_used_rate === null) {
               return null
             } else {
-              return h(Tag, { props: { color: 'success' } }, cpu_used + '%')
+              return h(Tag, { props: { color: 'success' } }, cpu_used_rate + '%')
             }
           }
         },
         {
           title: '内存使用率',
-          key: 'mem_used',
+          key: 'physical_mem_used_rate',
           width: '100%',
           render: (h, params) => {
-            const mem_used = params.row.mem_used
-            if (mem_used >= 90) {
-              return h(Tag, { props: { color: 'error' } }, mem_used + '%')
+            const physical_mem_used_rate = params.row.physical_mem_used_rate
+            if (physical_mem_used_rate >= 90) {
+              return h(Tag, { props: { color: 'error' } }, physical_mem_used_rate + '%')
             }
-            if (mem_used >= 80) {
-              return h(Tag, { props: { color: 'warning' } }, mem_used + '%')
+            if (physical_mem_used_rate >= 80) {
+              return h(Tag, { props: { color: 'warning' } }, physical_mem_used_rate + '%')
             }
-            if (mem_used === null) {
+            if (physical_mem_used_rate === null) {
               return null
             } else {
-              return h(Tag, { props: { color: 'success' } }, mem_used + '%')
+              return h(Tag, { props: { color: 'success' } }, physical_mem_used_rate + '%')
             }
           }
         },
@@ -143,7 +157,6 @@ export default {
           }
           // fixed: 'right'
         }
-
       ],
       data: [],
       count: 0,
@@ -165,33 +178,33 @@ export default {
     }
   },
   created () {
-    this.get_linux_stat_list()
+    this.get_windows_stat_list()
   },
   methods: {
-    gotoLinux (tags) {
-      const path = '/linux/' + tags + '/view'
+    gotoWindows (tags) {
+      const path = '/windows/' + tags + '/view'
       this.$router.push({ path: path })
     },
     search () {
       console.log(this.host_search)
-      this.get_linux_stat_list(`host=${this.host_search}`)
+      this.get_windows_stat_list(`host=${this.host_search}`)
     },
     clear_search () {
       this.host_search = ''
-      this.get_linux_stat_list()
+      this.get_windows_stat_list()
     },
-    get_linux_stat_list (parameter) {
-      getLinuxStatList(parameter).then(res => {
+    get_windows_stat_list (parameter) {
+      getWindowsStatList(parameter).then(res => {
         this.data = res.data.results
         this.count = res.data.count
-        console.log('获取到的linux列表', this.data)
+        console.log('获取到的windows列表', this.data)
       }).catch(err => {
-        this.$Message.error(`获取linux资源信息错误 ${err}`)
+        this.$Message.error(`获取windows资源信息错误 ${err}`)
       })
     },
-    get_linux_parameter (parameter) {
+    get_windows_parameter (parameter) {
       console.log(parameter)
-      this.get_linux_stat_list(`page=${parameter}`)
+      this.get_windows_stat_list(`page=${parameter}`)
     }
   }
 }
