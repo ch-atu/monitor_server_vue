@@ -146,7 +146,7 @@ export default {
         {
           title: '状态',
           key: 'status',
-          width: '100%',
+          width: '88%',
           render: (h, params) => {
             const levelMap = {
               0: { color: 'green', desc: '正常' },

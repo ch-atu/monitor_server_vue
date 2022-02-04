@@ -166,10 +166,10 @@ export default {
           width: '120%',
           render: (h, params) => {
             const typeMap = {
-              1: { desc: 'Oracle数据库' },
               2: { desc: 'MySQL数据库' },
               3: { desc: 'Redis' },
-              4: { desc: 'Linux主机' }
+              4: { desc: 'Linux主机' },
+              5: {desc: 'Windows主机'}
             }
             const type = params.row.type
             return h('div', typeMap[type]['desc'])

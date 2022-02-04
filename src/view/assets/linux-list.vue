@@ -245,7 +245,7 @@
           </div>
             </Row>
           </Form>
-          <div class="demo-drawer-footer" v-show="showfooter" >
+          <div class="demo-drawer-footer" v-show="showfooter" style="z-index: 999">
             <Button style="margin-right: 8px"
                     @click="create = false">取消</Button>
             <Button type="primary"
@@ -255,20 +255,21 @@
 
       </Row>
 
+<!--      todo 保留功能-->
       <Modal width="80"
         v-model="webssh"
         title="Common Modal dialog box title"
         @on-ok="ok_webssh"
         @on-cancel="cancel_webssh">
-        <p>Content of dialog</p>
-        <p>Content of dialog</p>
-        <p>Content of dialog</p>
-              <p>Content of dialog</p>
-        <p>Content of dialog</p>
-        <p>Content of dialog</p>
-              <p>Content of dialog</p>
-        <p>Content of dialog</p>
-        <p>Content of dialog</p>
+<!--        <p>Content of dialog</p>-->
+<!--        <p>Content of dialog</p>-->
+<!--        <p>Content of dialog</p>-->
+<!--              <p>Content of dialog</p>-->
+<!--        <p>Content of dialog</p>-->
+<!--        <p>Content of dialog</p>-->
+<!--              <p>Content of dialog</p>-->
+<!--        <p>Content of dialog</p>-->
+<!--        <p>Content of dialog</p>-->
     </Modal>
     </Card>
   </Row>

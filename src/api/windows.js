@@ -21,7 +21,12 @@ export const getWindowsStatHis = parameter => {
   })
 }
 
-
+export const getWindowsDisk = parameter => {
+  return axios.request({
+    url: `/windows/api/windows-disk?${parameter}`,
+    method: 'get'
+  })
+}
 
 
 

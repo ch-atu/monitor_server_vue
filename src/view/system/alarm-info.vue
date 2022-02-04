@@ -15,7 +15,7 @@
               </Table>
               <br>
               <Page :total="count"
-                    :page_size='page_size'
+                    :page-size='page_size'
                     @on-change="get_export_alarm_info_page"
                     show-elevator
                     show-total />
@@ -101,26 +101,9 @@ export default {
     }
   },
   created () {
-    // this.get_alarm_info()
     this.get_export_alarm_info()
   },
   methods: {
-    // get_alarm_info (parameter) {
-    //   console.log('parameter的值是：',parameter);
-    //   getAlarmInfo(parameter).then(res => {
-    //     this.data = res.data.results
-    //     this.count = res.data.count
-    //     // console.log('hello!!!');
-    //     console.log('获取到的data数据是', this.data)
-    //   }).catch(err => {
-    //     this.$Message.error(`获取告警信息错误 ${err}`)
-    //   })
-    // },
-    // get_alarm_info_parameter (parameter) {
-    //   console.log('get_alarm_info_parameter:', parameter)
-    //   this.get_alarm_info(`page=${parameter}`)
-    // },
-
     // 新增导入表格
     exportExcel () {
       if (this.exportData.length) {
@@ -171,7 +154,7 @@ export default {
     get_select_alarm_info (val) {
       this.day = val
       getExportAlarmInfo(`day=${val}`).then(res => {
-        // this.exportData = res.data.results
+        console.log('getExportAlarmInfo的res值为：', res)
         this.data = res.data.results
         this.count = res.data.count
       }).catch(err => {

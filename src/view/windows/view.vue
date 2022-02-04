@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <Layout>
-      <linux-menu :value="'1'" :tags="this.Tags" ></linux-menu>
+      <windows-menu :value="'1'" :tags="this.Tags" ></windows-menu>
       <Content :style="{margin: '10px 0 0', background: '#fff', minHeight: '500px'}">
         <Row>
           <i-col span="9">
@@ -18,7 +18,7 @@
                 磁盘使用率
                 <Icon type="ios-bulb-outline" slot="icon"></Icon>
               </Alert>
-              <Table size="small" :columns="columnsDisk" :data="linuxdiskList"></Table>
+              <Table size="small" :columns="columnsDisk" :data="windows_disk_list"></Table>
             </card>
 
             <card>
@@ -70,18 +70,18 @@
 </template>
 
 <script>
-import { LinuxMenu } from '_c/top-menu'
+import { WindowsMenu } from '_c/top-menu'
 import { hasOneOf, formatDate } from '@/libs/tools'
 import InforCard from '_c/info-card'
-import { getWindowsStat, getWindowsStatHis } from '@/api/windows'
+import { getWindowsStat, getWindowsStatHis, getWindowsDisk } from '@/api/windows'
 import { getAlarmInfo, getExportAlarmInfo } from '@/api/system'
 import { ChartPie, SimpleChartPie, ChartLine1, ChartLine2 } from '_c/charts'
 import { Tag } from 'iview'
 
 export default {
-  name: 'linux_view',
+  name: 'windows_view',
   components: {
-    LinuxMenu,
+    WindowsMenu,
     InforCard,
     SimpleChartPie,
     ChartLine1,
@@ -97,7 +97,7 @@ export default {
       data: [],
       windows_info: [],
       windows_info_list: [],
-      linuxdiskList: [],
+      windows_disk_list: [],
       alarmData: [],
       columns1: [
         {
@@ -136,7 +136,7 @@ export default {
         },
         {
           title: '剩余空间(GB)',
-          key: 'free_size',
+          key: 'free_size'
           // width: 120
         }
       ],
@@ -169,7 +169,6 @@ export default {
       writembData: [],
       chart1_title: ['CPU', 'CPU使用率'],
       chart2_title: ['内存', '内存使用率'],
-      // chart3_title: ['磁盘IO', 'readmb', 'writemb'],
       chart3_title: ['虚拟内存', '虚拟内存使用率'],
       daterangeValue: null,
       startTime: '',
@@ -179,16 +178,15 @@ export default {
   created () {
     this.get_windows_stat(`tags=${this.$route.params.tags}`)
     this.get_windows_stat_his(`tags=${this.$route.params.tags} `)
-    // this.get_linux_disk(`tags=${this.$route.params.tags} `)
-    this.get_export_alarm_info(`tags=${this.$route.params.tags}&alarm_type=linux`)
+    this.get_windows_disk(`tags=${this.$route.params.tags} `)
+    this.get_export_alarm_info(`tags=${this.$route.params.tags}&alarm_type=windows`)
     // console.log('this.$route.params：', this.$route.params);
     this.Tags = this.$route.params.tags
     this.timer = setInterval(() => {
-      // this.get_linux_stat(`tags=${this.$route.params.tags} `)
-      // this.get_linux_stat_his(`tags=${this.$route.params.tags} `)
-      // this.get_linux_disk(`tags=${this.$route.params.tags} `)
-      // // this.get_alarm_info(`tags=${this.$route.params.tags} `)
-      // this.get_export_alarm_info(`tags=${this.$route.params.tags}&alarm_type=linux `)
+      this.get_windows_stat(`tags=${this.$route.params.tags} `)
+      this.get_windows_stat_his(`tags=${this.$route.params.tags} `)
+      this.get_windows_disk(`tags=${this.$route.params.tags} `)
+      this.get_export_alarm_info(`tags=${this.$route.params.tags}&alarm_type=windows`)
     }, 1000 * 60 * 2)
   },
   methods: {
@@ -208,7 +206,7 @@ export default {
             column1: 'CPU型号: ' + this.windows_info.cpu_type,
             column2: 'CPU核数: ' + this.windows_info.cpu_cores },
           {
-            column1: 'CPU频率: ' + this.windows_info.cpu_speed,
+            column1: 'CPU频率: ' + this.windows_info.cpu_speed + '(HZ)',
             column2: 'CPU线程数: ' + this.windows_info.cpu_thread }
         ]
         this.cpu_used_data = this.windows_info.cpu_used_rate
@@ -216,14 +214,13 @@ export default {
         this.virtual_mem_used_data = this.windows_info.virtual_mem_used_rate
         console.log(this.windows_info)
       }).catch(err => {
-        this.$Message.error(`获取linux资源信息错误 ${err}`)
+        this.$Message.error(`获取windows资源信息错误 ${err}`)
       })
     },
     get_windows_stat_his (parameter) {
       console.log('get_windows_stat_his被调用')
       getWindowsStatHis(parameter).then(res => {
         this.windows_info_list = res.data.results
-        // this.checktimeData = this.windows_info_list.map(linux => linux.check_time)
         this.checktimeData = this.windows_info_list.map(
           windows => {
             console.log('windows.check_time的值是：', windows.check_time)
@@ -240,11 +237,12 @@ export default {
         this.$Message.error(`获取windows资源信息错误 ${err}`)
       })
     },
-    get_linux_disk (parameter) {
-      getLinuxDisk(parameter).then(res => {
-        this.linuxdiskList = res.data.results
+    get_windows_disk (parameter) {
+      getWindowsDisk(parameter).then(res => {
+        this.windows_disk_list = res.data.results
+        console.log('获取到的磁盘数据是：', this.windows_disk_list)
       }).catch(err => {
-        this.$Message.error(`获取linux磁盘信息错误 ${err}`)
+        this.$Message.error(`获取windows磁盘信息错误：${err}`)
       })
     },
     get_export_alarm_info (parameter) {

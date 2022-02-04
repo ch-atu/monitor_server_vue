@@ -143,7 +143,14 @@ export const updateWindows = (id, data) => {
   })
 }
 
-
+export const deleteWindowsStat = host => {
+  return axios.request(
+    {
+      url: `/windows/api/del_windows_stat/${host}`,
+      method: 'delete'
+    }
+  )
+}
 
 
 

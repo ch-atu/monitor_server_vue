@@ -179,7 +179,7 @@ export default {
       this.get_linux_stat_his(`tags=${this.$route.params.tags} `)
       this.get_linux_disk(`tags=${this.$route.params.tags} `)
       // this.get_alarm_info(`tags=${this.$route.params.tags} `)
-      this.get_export_alarm_info(`tags=${this.$route.params.tags}&alarm_type=linux `)
+      this.get_export_alarm_info(`tags=${this.$route.params.tags}&alarm_type=linux`)
     }, 1000 * 60 * 2)
   },
   methods: {

@@ -15,18 +15,18 @@
                   <DatePicker @on-change="handleDaterangechange" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" placeholder="请选择时间范围" style="width: 250px"></DatePicker>
               <row>
                 <br>
-             <i-col span="12">
-            <chart-line2 style="height: 300px;" :title=chart1_title :data1="checktimeData" :data2="rdavgkbData" :data3="wravgkbData"></chart-line2>
-            <br>
-            <chart-line4 style="height: 300px;" :title=chart2_title :data1="checktimeData" :data2="rdrtData" :data3="wrrtData" :data4="qtimeData" :data5="stimeData"></chart-line4>
-            <br>
-            <chart-line5 style="height: 300px;" :title=chart3_title :data1="checktimeData" :data2="rdmrgsData" :data3="wrmrgsData" :data4="iosData" :data5="rdsData" :data6="wrsData"></chart-line5>
-              </i-col>
-                 <i-col span="12">
-            <chart-line2 style="height: 300px;" :title=chart4_title :data1="checktimeData" :data2="rdmsData" :data3="wrmsData"></chart-line2>
-            <br>
-            <chart-line4 style="height: 300px;" :title=chart5_title :data1="checktimeData" :data2="busyData" :data3="rdcncdData" :data4="wrcncdData" :data5="inprgData"></chart-line4>
-              </i-col>
+                <i-col span="12">
+                  <chart-line2 style="height: 300px;" :title=chart1_title :data1="checktimeData" :data2="rdavgkbData" :data3="wravgkbData"></chart-line2>
+                  <br>
+                  <chart-line4 style="height: 300px;" :title=chart2_title :data1="checktimeData" :data2="rdrtData" :data3="wrrtData" :data4="qtimeData" :data5="stimeData"></chart-line4>
+                  <br>
+                  <chart-line5 style="height: 300px;" :title=chart3_title :data1="checktimeData" :data2="rdmrgsData" :data3="wrmrgsData" :data4="iosData" :data5="rdsData" :data6="wrsData"></chart-line5>
+                </i-col>
+                <i-col span="12">
+                  <chart-line2 style="height: 300px;" :title=chart4_title :data1="checktimeData" :data2="rdmsData" :data3="wrmsData"></chart-line2>
+                  <br>
+                  <chart-line4 style="height: 300px;" :title=chart5_title :data1="checktimeData" :data2="busyData" :data3="rdcncdData" :data4="wrcncdData" :data5="inprgData"></chart-line4>
+                </i-col>
               </Row>
                  </Card>
             </Content>

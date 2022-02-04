@@ -254,7 +254,7 @@
             </Row>
 
           </Form>
-          <div class="demo-drawer-footer" v-show="showfooter" >
+          <div class="demo-drawer-footer" v-show="showfooter" style="z-index: 999">
             <Button style="margin-right: 8px"
                     @click="create = false">取消</Button>
             <Button type="primary"
@@ -285,7 +285,7 @@
 </template>
 
 <script>
-import { getWindowsList, createWindows, updateWindows, deleteWindows, deleteLinuxStat } from '@/api/assets'
+import { getWindowsList, createWindows, updateWindows, deleteWindows, deleteWindowsStat } from '@/api/assets'
 import { hasOneOf } from '@/libs/tools'
 import { Tag } from 'iview'
 export default {
@@ -301,7 +301,7 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: '120%'
+          width: '130%'
         },
         {
           title: '主机名',
@@ -309,9 +309,9 @@ export default {
           width: '100%'
         },
         {
-          title: 'linux版本',
-          key: 'linux_version',
-          width: '100%'
+          title: 'windows版本',
+          key: 'windows_version',
+          width: '120%'
         },
         {
           title: '连接用户名',
@@ -500,13 +500,13 @@ export default {
       return this.$store.state.user.access
     },
     addAccessAll () {
-      return hasOneOf(['assets.add_linuxlist'], this.access)
+      return hasOneOf(['assets.add_windowslist'], this.access)
     },
     updateAccessAll () {
-      return hasOneOf(['assets.change_linuxlist'], this.access)
+      return hasOneOf(['assets.change_windowslist'], this.access)
     },
     deleteAccessAll () {
-      return hasOneOf(['assets.delete_linuxlist'], this.access)
+      return hasOneOf(['assets.delete_windowslist'], this.access)
     }
   },
   methods: {
@@ -623,9 +623,9 @@ export default {
       console.log('要删除的index，id，host：', index, id, host)
       deleteWindows(id).then(res => {
         console.log('deleteWindows:', res)
-        // deleteLinuxStat(host).then(res => {
-        //   console.log('deleteLinuxStat:', res)
-        // })
+        deleteWindowsStat(host).then(res => {
+          console.log('deleteWindowsStat:', res)
+        })
         this.$Message.success('删除windows配置成功!')
         this.data.splice(index, 1)
       }).catch(err => {

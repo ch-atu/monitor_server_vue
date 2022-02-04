@@ -13,7 +13,8 @@
             <br>
             <chart-line2 style="height: 300px;" :title=chart3_title :data1="checktimeData" :data2="swapinData" :data3="swapoutData"></chart-line2>
             <br>
-            <chart-line4 style="height: 300px;" :title=chart4_title :data1="checktimeData" :data2="pageinData" :data3="pageoutData" :data4="pagefaultData" :data5="pagemjfaultData"></chart-line4>
+<!--            todo 暂不使用-->
+<!--            <chart-line4 style="height: 300px;" :title=chart4_title :data1="checktimeData" :data2="pageinData" :data3="pageoutData" :data4="pagefaultData" :data5="pagemjfaultData"></chart-line4>-->
           </Card>
     </Row>
             </Content>
@@ -62,7 +63,7 @@ export default {
       chart1_title: ['内存', 'free(mb)', 'cache(mb)', 'used(mb)', 'buffer(mb)'],
       chart2_title: ['SWAP使用量', 'swap free(mb)', 'swap used(mb)'],
       chart3_title: ['SWAP页面数', 'swap in', 'swap out'],
-      chart4_title: ['PAGE', 'page_in', 'page_out', 'page_fault', 'page_mjfault'],
+      // chart4_title: ['PAGE', 'page_in', 'page_out', 'page_fault', 'page_mjfault'],
       daterangeValue: null,
       startTime: '',
       endTime: ''
@@ -90,10 +91,11 @@ export default {
         this.swapfreeData = this.linuxinfoList.map(linux => linux.swap_free)
         this.swapinData = this.linuxinfoList.map(linux => linux.swapin)
         this.swapoutData = this.linuxinfoList.map(linux => linux.swapout)
-        this.pageinData = this.linuxinfoList.map(linux => linux.pgin)
-        this.pageoutData = this.linuxinfoList.map(linux => linux.pgout)
-        this.pagefaultData = this.linuxinfoList.map(linux => linux.pgfault)
-        this.pagemjfaultData = this.linuxinfoList.map(linux => linux.pgmjfault)
+        // todo 暂不使用
+        // this.pageinData = this.linuxinfoList.map(linux => linux.pgin)
+        // this.pageoutData = this.linuxinfoList.map(linux => linux.pgout)
+        // this.pagefaultData = this.linuxinfoList.map(linux => linux.pgfault)
+        // this.pagemjfaultData = this.linuxinfoList.map(linux => linux.pgmjfault)
 
         console.log(this.linuxinfo)
       }).catch(err => {

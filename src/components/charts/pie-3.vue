@@ -33,16 +33,20 @@ export default {
           radius: '64%',
           center: ['50%', '50%'],
           clockwise: false,
-          data: [{
+          data: [
+            {
             value: this.value[0],
             name: '正常'
-          }, {
-            value: this.value[2],
-            name: '告警'
-          }, {
+          },
+            {
             value: this.value[1],
             name: '危险'
-          }],
+            },
+            {
+            value: this.value[2],
+            name: '告警'
+          }
+          ],
           label: {
             normal: {
               textStyle: {
@@ -71,8 +75,8 @@ export default {
         }],
         color: [
           '#22d4bf',
-          '#d4cda6',
-          '#d45356'
+          '#d45356',
+          '#d4cda6'
         ],
         backgroundColor: '#fff'
       }
