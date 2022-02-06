@@ -1,15 +1,15 @@
 <template>
   <Row>
+    <Row>
+      <Input v-model="host_search"
+             placeholder="ip地址"
+             style="width: 180px" />&nbsp;
+      <Button @click="search"
+              type="primary">搜索</Button>&nbsp;
+      <Button @click="clear_search"
+              type="success">刷新</Button>
+    </Row>
     <Card>
-      <Row>
-        <Input v-model="host_search"
-               placeholder="ip地址"
-               style="width: 160px" />&nbsp;
-        <Button @click="search"
-                type="primary">搜索</Button>&nbsp;
-        <Button @click="clear_search"
-                type="success">刷新</Button>
-      </Row>
       <br>
       <Row>
         <Table size="small" border
