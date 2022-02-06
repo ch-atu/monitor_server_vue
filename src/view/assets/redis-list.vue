@@ -240,7 +240,7 @@ export default {
         {
           title: '系统等级',
           key: 'system_level',
-          width: '100%',
+          width: '110%',
           render: (h, params) => {
             const levelMap = {
               0: { color: 'red', desc: '核心系统' },
