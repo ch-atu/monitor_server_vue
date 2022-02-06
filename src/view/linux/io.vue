@@ -15,18 +15,18 @@
                   <DatePicker @on-change="handleDaterangechange" type="datetimerange" format="yyyy-MM-dd HH:mm:ss" placeholder="请选择时间范围" style="width: 250px"></DatePicker>
               <row>
                 <br>
-             <i-col span="12">
-            <chart-line2 style="height: 300px;" :title=chart1_title :data1="checktimeData" :data2="rdavgkbData" :data3="wravgkbData"></chart-line2>
-            <br>
-            <chart-line4 style="height: 300px;" :title=chart2_title :data1="checktimeData" :data2="rdrtData" :data3="wrrtData" :data4="qtimeData" :data5="stimeData"></chart-line4>
-            <br>
-            <chart-line5 style="height: 300px;" :title=chart3_title :data1="checktimeData" :data2="rdmrgsData" :data3="wrmrgsData" :data4="iosData" :data5="rdsData" :data6="wrsData"></chart-line5>
-              </i-col>
-                 <i-col span="12">
-            <chart-line2 style="height: 300px;" :title=chart4_title :data1="checktimeData" :data2="rdmsData" :data3="wrmsData"></chart-line2>
-            <br>
-            <chart-line4 style="height: 300px;" :title=chart5_title :data1="checktimeData" :data2="busyData" :data3="rdcncdData" :data4="wrcncdData" :data5="inprgData"></chart-line4>
-              </i-col>
+                <i-col span="12">
+                  <chart-line2 style="height: 300px;" :title=chart1_title :data1="checktimeData" :data2="rdavgkbData" :data3="wravgkbData"></chart-line2>
+                  <br>
+                  <chart-line4 style="height: 300px;" :title=chart2_title :data1="checktimeData" :data2="rdrtData" :data3="wrrtData" :data4="qtimeData" :data5="stimeData"></chart-line4>
+                  <br>
+                  <chart-line5 style="height: 300px;" :title=chart3_title :data1="checktimeData" :data2="rdmrgsData" :data3="wrmrgsData" :data4="iosData" :data5="rdsData" :data6="wrsData"></chart-line5>
+                </i-col>
+                <i-col span="12">
+                  <chart-line2 style="height: 300px;" :title=chart4_title :data1="checktimeData" :data2="rdmsData" :data3="wrmsData"></chart-line2>
+                  <br>
+                  <chart-line4 style="height: 300px;" :title=chart5_title :data1="checktimeData" :data2="busyData" :data3="rdcncdData" :data4="wrcncdData" :data5="inprgData"></chart-line4>
+                </i-col>
               </Row>
                  </Card>
             </Content>
@@ -62,39 +62,39 @@ export default {
       columns: [
         {
           type: 'index',
-          width: 60,
+          width: '50%',
           align: 'center'
         },
         {
           title: 'IP地址',
           key: 'host',
-          width: 120,
+          width: '120%',
           sortable: true
         },
         {
           title: '挂载点',
           key: 'mount_point',
-          width: 100
+          width: '100%'
         },
         {
           title: '目录大小(GB)',
           key: 'total_size',
-          width: 120
+          width: '120%'
         },
         {
           title: '使用空间(GB)',
           key: 'used_size',
-          width: 120
+          width: '120%'
         },
         {
           title: '剩余空间(GB)',
           key: 'free_size',
-          width: 120
+          width: '120%'
         },
         {
           title: '使用率',
           key: 'used_percent',
-          width: 100,
+          width: '100%',
           render: (h, params) => {
             const used_percent = params.row.used_percent
             if (used_percent >= 95) {
@@ -113,12 +113,12 @@ export default {
         {
           title: '设备',
           key: 'dev',
-          width: 100
+          width: '100%'
         },
         {
           title: '采集时间',
           key: 'check_time',
-          width: 140,
+          // width: 140,
           render: (h, params) => {
             return h('div',
               formatDate(new Date(params.row.check_time), 'yyyy-MM-dd hh:mm')
@@ -251,4 +251,5 @@ export default {
 .count-style{
   font-size: 50px;
 }
+
 </style>

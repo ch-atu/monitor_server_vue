@@ -3,12 +3,12 @@
     <Row>
       <Button @click="add"
               v-if="addAccessAll"
-              type="primary">添加</Button>&nbsp;
+              type="primary">添加</Button>&nbsp
       <Input v-model="host_search"
              placeholder="ip地址"
-             style="width: 180px" />&nbsp;
+             style="width: 180px" />&nbsp
       <Button @click="search"
-              type="primary">搜索</Button>&nbsp;
+              type="primary">搜索</Button>&nbsp
       <Button @click="clear_search"
               type="success">刷新</Button>
     </Row>
@@ -25,12 +25,14 @@
         <br>
         <Page :total="count"
               :page_size='page_size'
-              @on-change="get_linux_parameter"
+              @on-change="get_windows_parameter"
               show-elevator
               show-total />
       </Row>
+
+<!--      添加相关操作-->
       <Row>
-        <Drawer title="Linux主机配置"
+        <Drawer title="Windows主机配置"
                 v-model="create"
                 width="720"
                 :mask-closable="this.close"
@@ -38,212 +40,219 @@
           <Form ref="formData"
                 :model="formData"
                 :rules="ruleValidate">
-            <Alert show-icon>Linux主机配置</Alert>
+
+            <Alert show-icon>Windows主机配置</Alert>
             <Row :gutter="32">
               <Col span="6">
-              <FormItem label="标签"
-                        label-position="top"
-                        prop="tags">
-                <Input v-model="formData.tags"
-                       placeholder="自定义唯一标签" />
-              </FormItem>
+                <FormItem label="标签"
+                          label-position="top"
+                          prop="tags">
+                  <Input v-model="formData.tags"
+                         placeholder="自定义唯一标签" />
+                </FormItem>
               </Col>
               <Col span="6">
-              <FormItem label="ip地址"
-                        label-position="top"
-                        prop="host">
-                <Input v-model="formData.host"
-                       placeholder="请填写ip地址" />
-              </FormItem>
+                <FormItem label="ip地址"
+                          label-position="top"
+                          prop="host">
+                  <Input v-model="formData.host"
+                         placeholder="请填写ip地址" />
+                </FormItem>
               </Col>
               <Col span="4">
-              <FormItem label="主机名"
-                        label-position="top"
-                        prop="hostname">
-                <Input v-model="formData.hostname"
-                       placeholder="主机名">
-                </Input>
-              </FormItem>
+                <FormItem label="主机名"
+                          label-position="top"
+                          prop="hostname">
+                  <Input v-model="formData.hostname"
+                         placeholder="主机名">
+                  </Input>
+                </FormItem>
               </Col>
             </Row>
             <Row :gutter="32">
               <Col span="8">
-              <FormItem label="Linux版本"
-                        label-position="top"
-                        prop="db_version">
-                <Select v-model="formData.linux_version"
-                        placeholder="">
-                  <Option value="Linux6">Linux6</Option>
-                  <Option value="Linux7">Linux7</Option>
-                </Select>
-              </FormItem>
+                <FormItem label="Windows版本"
+                          label-position="top"
+                          prop="windows_version">
+                  <Select v-model="formData.windows_version"
+                          placeholder="请选择Windows版本">
+                    <Option value="Windows7">Windows7</Option>
+                    <Option value="Windows8">Windows8</Option>
+                    <Option value="Windows10">Windows10</Option>
+                  </Select>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="内核版本"
-                        label-position="top"
-                        prop="db_version">
-                <Input v-model="formData.linux_kernel"
-                       placeholder="内核">
-                </Input>
-              </FormItem>
+                <FormItem label="内核版本"
+                          label-position="top"
+                          prop="windows_kernel">
+                  <Input v-model="formData.windows_kernel"
+                         placeholder="内核">
+                  </Input>
+                </FormItem>
               </Col>
             </Row>
+
             <Alert show-icon>操作系统配置</Alert>
             <Row :gutter="32">
               <Col span="6">
-              <FormItem label="操作系统用户名"
-                        label-position="top"
-                        prop="user">
-                <Input v-model="formData.user"
-                             placeholder="操作系统用户名">
-                </Input>
-              </FormItem>
+                <FormItem label="操作系统用户名"
+                          label-position="top"
+                          prop="user">
+                  <Input v-model="formData.user"
+                         placeholder="操作系统用户名">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="6">
-              <FormItem label="操作系统用户密码"
-                        label-position="top"
-                        prop="password">
-                <Input type="password" v-model="formData.password"
-                             placeholder="操作系统用户密码">
-                </Input>
-              </FormItem>
+                <FormItem label="操作系统用户密码"
+                          label-position="top"
+                          prop="password">
+                  <Input type="password" v-model="formData.password"
+                         placeholder="操作系统用户密码">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="6">
-              <FormItem label="操作系统ssh端口号"
-                        label-position="top"
-                        prop="sshport">
-                <InputNumber v-model="formData.sshport"
-                             placeholder="操作系统ssh端口号">
-                </InputNumber>
-              </FormItem>
+                <FormItem label="操作系统winrm端口号"
+                          label-position="top"
+                          prop="winrm_port">
+                  <InputNumber v-model="formData.winrm_port"
+                               placeholder="操作系统winrm端口号">
+                  </InputNumber>
+                </FormItem>
               </Col>
             </Row>
+
             <Alert show-icon>机房信息</Alert>
             <Row :gutter="32">
               <Col span="6">
-              <FormItem label="序列号"
-                        label-position="top"
-                        prop="serialno">
-                <Input v-model="formData.serialno"
-                       placeholder="序列号">
-                </Input>
-              </FormItem>
+                <FormItem label="序列号"
+                          label-position="top"
+                          prop="serialno">
+                  <Input v-model="formData.serialno"
+                         placeholder="序列号">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="4">
-              <FormItem label="状态"
-                        label-position="top"
-                        prop="status">
-                <Select v-model="formData.status"
-                        placeholder="">
-                  <Option value="0">在线</Option>
-                  <Option value="1">备用</Option>
-                  <Option value="2">下线</Option>
-                  <Option value="3">待用</Option>
-                  <Option value="4">维修</Option>
-                  <Option value="5">重装</Option>
-                </Select>
-              </FormItem>
+                <FormItem label="状态"
+                          label-position="top"
+                          prop="status">
+                  <Select v-model="formData.status"
+                          placeholder="">
+                    <Option value="0">在线</Option>
+                    <Option value="1">备用</Option>
+                    <Option value="2">下线</Option>
+                    <Option value="3">待用</Option>
+                    <Option value="4">维修</Option>
+                    <Option value="5">重装</Option>
+                  </Select>
+                </FormItem>
               </Col>
               <Col span="6">
-              <FormItem label="机柜"
-                        label-position="top"
-                        prop="cabinet">
-                <Input v-model="formData.cabinet"
-                       placeholder="机柜">
-                </Input>
-              </FormItem>
+                <FormItem label="机柜"
+                          label-position="top"
+                          prop="cabinet">
+                  <Input v-model="formData.cabinet"
+                         placeholder="机柜">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="6">
-              <FormItem label="服务器厂家"
-                        label-position="top"
-                        prop="factory">
-                <Input v-model="formData.factory"
-                       placeholder="服务器厂家">
-                </Input>
-              </FormItem>
+                <FormItem label="服务器厂家"
+                          label-position="top"
+                          prop="factory">
+                  <Input v-model="formData.factory"
+                         placeholder="服务器厂家">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="采购日期"
-                        label-position="top"
-                        prop="purchase_date">
-                <DatePicker v-model="formData.purchase_date" value="yyyymmdd" type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
-              </FormItem>
+                <FormItem label="采购日期"
+                          label-position="top"
+                          prop="purchase_date">
+                  <DatePicker v-model="formData.purchase_date" value="yyyymmdd" type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="保修开始日期"
-                        label-position="top"
-                        prop="beginprotection_date">
-                <DatePicker v-model="formData.beginprotection_date"  type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
-              </FormItem>
+                <FormItem label="保修开始日期"
+                          label-position="top"
+                          prop="beginprotection_date">
+                  <DatePicker v-model="formData.beginprotection_date"  type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="过保日期"
-                        label-position="top"
-                        prop="overprotection_date">
-                <DatePicker v-model="formData.overprotection_date" type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
-              </FormItem>
+                <FormItem label="过保日期"
+                          label-position="top"
+                          prop="overprotection_date">
+                  <DatePicker v-model="formData.overprotection_date" type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
+                </FormItem>
               </Col>
             </Row>
+
             <Alert show-icon>服务器描述</Alert>
             <Row :gutter="32">
               <Col span="4">
-              <FormItem label="业务系统"
-                        label-position="top"
-                        prop="bussiness_system">
-                <Input v-model="formData.bussiness_system"
-                       placeholder="归属系统">
-                </Input>
-              </FormItem>
+                <FormItem label="业务系统"
+                          label-position="top"
+                          prop="bussiness_system">
+                  <Input v-model="formData.bussiness_system"
+                         placeholder="归属系统">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="4">
-              <FormItem label="系统等级"
-                        label-position="top"
-                        prop="db_version">
-                <Select v-model="formData.system_level"
-                        placeholder="">
-                  <Option value="0">核心系统</Option>
-                  <Option value="1">重要系统</Option>
-                  <Option value="2">一般系统</Option>
-                </Select>
-              </FormItem>
+                <FormItem label="系统等级"
+                          label-position="top"
+                          prop="db_version">
+                  <Select v-model="formData.system_level"
+                          placeholder="">
+                    <Option value="0">核心系统</Option>
+                    <Option value="1">重要系统</Option>
+                    <Option value="2">一般系统</Option>
+                  </Select>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="服务器描述"
-                        label-position="top"
-                        prop="res_description">
-                <Input v-model="formData.res_description"
-                       placeholder="服务器描述">
-                </Input>
-              </FormItem>
+                <FormItem label="服务器描述"
+                          label-position="top"
+                          prop="res_description">
+                  <Input v-model="formData.res_description"
+                         placeholder="服务器描述">
+                  </Input>
+                </FormItem>
               </Col>
               <Col span="8">
-              <FormItem label="主要部署软件"
-                        label-position="top"
-                        prop="main_software">
-                <Input v-model="formData.main_software"
-                       placeholder="主要部署软件">
-                </Input>
-              </FormItem>
+                <FormItem label="主要部署软件"
+                          label-position="top"
+                          prop="main_software">
+                  <Input v-model="formData.main_software"
+                         placeholder="主要部署软件">
+                  </Input>
+                </FormItem>
               </Col>
             </Row>
+
             <Alert show-icon>告警配置</Alert>
             <Row :gutter="32">
               <div>
-            <Form class="step-form" :label-width="100">
-              <FormItem label="选择告警配置">
-                <CheckboxGroup>
-                  <Checkbox v-model="formData.alarm_connect" true-value="1" false-value="0" label="Linux主机通断告警"></Checkbox>
-                  <Checkbox v-model="formData.alarm_cpu" true-value="1" false-value="0" label="cpu使用率告警"></Checkbox>
-                  <Checkbox v-model="formData.alarm_mem" true-value="1" false-value="0" label="内存使用率告警"></Checkbox>
-                  <Checkbox v-model="formData.alarm_disk" true-value="1" false-value="0"  label="磁盘使用率告警"></Checkbox>
-<!--                  todo 暂时不用-->
-<!--                  <Checkbox v-model="formData.alarm_swap" true-value="1" false-value="0"  label="swap使用率告警"></Checkbox>-->
-<!--                  <Checkbox v-model="formData.alarm_alert_log" true-value="1" false-value="0"  label="后台日志告警"></Checkbox>-->
-                </CheckboxGroup>
-              </FormItem>
-            </Form>
-          </div>
+                <Form class="step-form" :label-width="100">
+                  <FormItem label="选择告警配置">
+                    <CheckboxGroup>
+                      <Checkbox v-model="formData.alarm_connect" true-value="1" false-value="0" label="Windows主机通断告警"></Checkbox>
+                      <Checkbox v-model="formData.alarm_cpu" true-value="1" false-value="0" label="cpu使用率告警"></Checkbox>
+                      <Checkbox v-model="formData.alarm_mem" true-value="1" false-value="0" label="内存使用率告警"></Checkbox>
+                      <!--                      todo 暂时不用-->
+<!--                      <Checkbox v-model="formData.alarm_swap" true-value="1" false-value="0"  label="swap使用率告警"></Checkbox>-->
+<!--                      <Checkbox v-model="formData.alarm_disk" true-value="1" false-value="0"  label="磁盘使用率告警"></Checkbox>-->
+<!--                      <Checkbox v-model="formData.alarm_alert_log" true-value="1" false-value="0"  label="后台日志告警"></Checkbox>-->
+                    </CheckboxGroup>
+                  </FormItem>
+                </Form>
+              </div>
             </Row>
+
           </Form>
           <div class="demo-drawer-footer" v-show="showfooter" style="z-index: 999">
             <Button style="margin-right: 8px"
@@ -255,28 +264,28 @@
 
       </Row>
 
-<!--      todo 保留功能-->
+<!--      todo 预留模块，暂时没用-->
       <Modal width="80"
-        v-model="webssh"
-        title="Common Modal dialog box title"
-        @on-ok="ok_webssh"
-        @on-cancel="cancel_webssh">
-<!--        <p>Content of dialog</p>-->
-<!--        <p>Content of dialog</p>-->
-<!--        <p>Content of dialog</p>-->
-<!--              <p>Content of dialog</p>-->
-<!--        <p>Content of dialog</p>-->
-<!--        <p>Content of dialog</p>-->
-<!--              <p>Content of dialog</p>-->
-<!--        <p>Content of dialog</p>-->
-<!--        <p>Content of dialog</p>-->
-    </Modal>
+             v-model="webssh"
+             title="Common Modal dialog box title"
+             @on-ok="ok_webssh"
+             @on-cancel="cancel_webssh">
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+        <p>Content of dialog</p>
+      </Modal>
     </Card>
   </Row>
 </template>
 
 <script>
-import { getLinuxList, createLinux, updateLinux, deleteLinux, deleteLinuxStat } from '@/api/assets'
+import { getWindowsList, createWindows, updateWindows, deleteWindows, deleteWindowsStat } from '@/api/assets'
 import { hasOneOf } from '@/libs/tools'
 import { Tag } from 'iview'
 export default {
@@ -292,7 +301,7 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: '120%'
+          width: '130%'
         },
         {
           title: '主机名',
@@ -300,9 +309,9 @@ export default {
           width: '100%'
         },
         {
-          title: 'linux版本',
-          key: 'linux_version',
-          width: '100%'
+          title: 'windows版本',
+          key: 'windows_version',
+          width: '120%'
         },
         {
           title: '连接用户名',
@@ -348,9 +357,10 @@ export default {
         {
           title: '操作',
           key: 'action',
-          // width: '120%',
+          // width: '500%',
           align: 'center',
           render: (h, params) => {
+            console.log('h的值为：', h);
             console.log('操作中的params的值是：', params)
             return h('div', [
               h('Button', {
@@ -362,7 +372,6 @@ export default {
                   marginRight: '5px'
                 },
                 on: {
-
                   click: () => {
                     this.show = true
                     this.view(params.index)
@@ -431,27 +440,38 @@ export default {
         tags: '',
         host: '',
         hostname: '',
-        linux_version: 'Linux6',
+        windows_version: 'Windows7',
+        windows_kernel:'',
         user: '',
         password: '',
-        sshport: 22,
+        winrm_port: 5985,
+        // 序列号
         serialno: '',
         status: '0',
+        // 机柜
         cabinet: '',
+        // 服务器厂家
         factory: '',
+        // 采购日期
         purchase_date: '',
+        // 保修开始日期
         beginprotection_date: '',
+        // 保修结束日期
         overprotection_date: '',
+        // 业务系统
         bussiness_system: '',
         system_level: '0',
+        // 服务器描述
         res_description: '',
+        // 主要软件
         main_software: '',
         alarm_connect: '',
         alarm_cpu: '',
-        alarm_mem: '',
-        alarm_swap: '',
-        alarm_disk: '',
-        alarm_alert_log: ''
+        alarm_mem: ''
+        // todo 暂时不用
+        // alarm_swap: '',
+        // alarm_disk: '',
+        // alarm_alert_log: ''
       },
       ruleValidate: {
         tags: [
@@ -473,20 +493,20 @@ export default {
     }
   },
   created () {
-    this.get_linux_list()
+    this.get_windows_list()
   },
   computed: {
     access () {
       return this.$store.state.user.access
     },
     addAccessAll () {
-      return hasOneOf(['assets.add_linuxlist'], this.access)
+      return hasOneOf(['assets.add_windowslist'], this.access)
     },
     updateAccessAll () {
-      return hasOneOf(['assets.change_linuxlist'], this.access)
+      return hasOneOf(['assets.change_windowslist'], this.access)
     },
     deleteAccessAll () {
-      return hasOneOf(['assets.delete_linuxlist'], this.access)
+      return hasOneOf(['assets.delete_windowslist'], this.access)
     }
   },
   methods: {
@@ -498,25 +518,25 @@ export default {
     },
     search () {
       console.log(this.host_search)
-      this.get_linux_list(`host=${this.host_search}`)
+      this.get_windows_list(`host=${this.host_search}`)
     },
     clear_search () {
       this.host_search = ''
-      this.get_linux_list()
+      this.get_windows_list()
     },
-    get_linux_list (parameter) {
-      getLinuxList(parameter).then(res => {
-        console.log('查询的linux数据是：', res)
+    get_windows_list (parameter) {
+      getWindowsList(parameter).then(res => {
+        console.log('查询的windows数据是：', res)
         this.data = res.data.results
         this.count = res.data.count
-        console.log('get_linux_list', this.data)
+        console.log('getWindowsList', this.data)
       }).catch(err => {
-        this.$Message.error(`获取linux资源信息错误 ${err}`)
+        this.$Message.error(`获取windows资源信息错误 ${err}`)
       })
     },
-    get_linux_parameter (parameter) {
+    get_windows_parameter (parameter) {
       console.log(parameter)
-      this.get_linux_list(`page=${parameter}`)
+      this.get_windows_list(`page=${parameter}`)
     },
     view (index) {
       this.update(index)
@@ -525,39 +545,44 @@ export default {
     },
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
-        console.log()
         if (valid) {
+          // 新增
           if (!this.updateId) {
-            createLinux(this.formData).then(res => {
+            createWindows(this.formData).then(res => {
               console.log(res)
-              this.$Message.success('新增linux配置成功!')
-              this.get_linux_list()
+              this.$Message.success('新增windows配置成功!')
+              this.get_windows_list()
               this.create = false
             }).catch(err => {
-              console.log(err.response)
+              console.log(err.response.data)
+              console.log(Object.entries(err.response.data))
               this.$Message.error({
-                content: `新增linux配置错误 ${Object.entries(err.response.data)}`,
-                duration: 10,
-                closable: true
-              })
-            })
-          } else {
-            console.log(this.updateId)
-            updateLinux(this.updateId, this.formData).then(res => {
-              console.log(res)
-              this.$Message.success('更新linux配置成功!')
-              this.get_linux_list()
-              this.create = false
-            }).catch(err => {
-              console.log(err.response)
-              this.$Message.error({
-                content: `更新linux配置错误 ${Object.entries(err.response.data)}`,
+                content: `新增windows配置错误：${Object.entries(err.response.data)}`,
                 duration: 10,
                 closable: true
               })
             })
           }
-        } else {
+          // 修改
+          else {
+            console.log(this.updateId)
+            updateWindows(this.updateId, this.formData).then(res => {
+              console.log(res)
+              this.$Message.success('更新windows配置成功!')
+              this.get_windows_list()
+              this.create = false
+            }).catch(err => {
+              console.log(err.response)
+              this.$Message.error({
+                content: `更新windows配置错误 ${Object.entries(err.response.data)}`,
+                duration: 10,
+                closable: true
+              })
+            })
+          }
+        }
+        // 校验错误
+        else {
           this.$Message.error('错误!')
         }
       })
@@ -570,11 +595,11 @@ export default {
       this.formData.tags = ''
       this.formData.host = ''
       this.formData.hostname = ''
-      this.formData.db_version = 'Linux6'
-      this.formData.linux_kernel = ''
+      this.formData.windows_version = 'Windows7'
+      this.formData.windows_kernel = ''
       this.formData.user = ''
       this.formData.password = ''
-      this.formData.sshport = 22
+      this.formData.winrm_port = 5985
       this.formData.serialno = ''
       this.formData.status = '0'
       this.formData.cabinet = ''
@@ -589,24 +614,24 @@ export default {
       this.formData.alarm_connect = '1'
       this.formData.alarm_cpu = '1'
       this.formData.alarm_mem = '1'
-      this.formData.alarm_disk = '1'
       // todo 暂时不用
-      this.formData.alarm_swap = '0'
-      this.formData.alarm_alert_log = '0'
+      // this.formData.alarm_swap = '1'
+      // this.formData.alarm_disk = '1'
+      // this.formData.alarm_alert_log = '1'
     },
     remove (index, id, host) {
       console.log('要删除的index，id，host：', index, id, host)
-      deleteLinux(id).then(res => {
-        console.log('deleteLinux:', res)
-        deleteLinuxStat(host).then(res => {
-          console.log('deleteLinuxStat:', res)
+      deleteWindows(id).then(res => {
+        console.log('deleteWindows:', res)
+        deleteWindowsStat(host).then(res => {
+          console.log('deleteWindowsStat:', res)
         })
-        this.$Message.success('删除linux配置成功!')
+        this.$Message.success('删除windows配置成功!')
         this.data.splice(index, 1)
       }).catch(err => {
         console.log(err.response)
         this.$Message.error({
-          content: `删除linux配置错误 ${Object.entries(err.response.data)}`,
+          content: `删除lwindows配置错误 ${Object.entries(err.response.data)}`,
           duration: 10,
           closable: true
         })
@@ -620,11 +645,11 @@ export default {
       this.formData.tags = this.data[index].tags
       this.formData.host = this.data[index].host
       this.formData.hostname = this.data[index].hostname
-      this.formData.linux_version = this.data[index].linux_version
-      this.formData.linux_kernel = this.data[index].linux_kernel
+      this.formData.windows_version = this.data[index].windows_version
+      this.formData.windows_kernel = this.data[index].windows_kernel
       this.formData.user = this.data[index].user
       this.formData.password = this.data[index].password
-      this.formData.sshport = this.data[index].sshport
+      this.formData.winrm_port = this.data[index].winrm_port
       this.formData.serialno = this.data[index].serialno
       this.formData.status = String(this.data[index].status)
       this.formData.cabinet = this.data[index].cabinet
@@ -639,9 +664,10 @@ export default {
       this.formData.alarm_connect = String(this.data[index].alarm_connect)
       this.formData.alarm_cpu = String(this.data[index].alarm_cpu)
       this.formData.alarm_mem = String(this.data[index].alarm_mem)
-      this.formData.alarm_swap = String(this.data[index].alarm_swap)
-      this.formData.alarm_disk = String(this.data[index].alarm_disk)
-      this.formData.alarm_alert_log = String(this.data[index].alarm_alert_log)
+      // todo 暂时不用
+      // this.formData.alarm_swap = String(this.data[index].alarm_swap)
+      // this.formData.alarm_disk = String(this.data[index].alarm_disk)
+      // this.formData.alarm_alert_log = String(this.data[index].alarm_alert_log)
     }
   }
 }

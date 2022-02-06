@@ -1,18 +1,18 @@
 <template>
   <Row>
+    <Row>
+      <Button @click="add"
+              v-if="addAccessAll"
+              type="primary">添加</Button>&nbsp;
+      <Input v-model="host_search"
+             placeholder="ip地址"
+             style="width: 180px" />&nbsp;
+      <Button @click="search"
+              type="primary">搜索</Button>&nbsp;
+      <Button @click="clear_search"
+              type="success">刷新</Button>
+    </Row>
     <Card>
-      <Row>
-        <Button @click="add"
-                v-if="addAccessAll"
-                type="primary">添加</Button>&nbsp;
-        <Input v-model="host_search"
-               placeholder="ip地址"
-               style="width: 100px" />&nbsp;
-        <Button @click="search"
-                type="primary">搜索</Button>&nbsp;
-        <Button @click="clear_search"
-                type="success">刷新</Button>
-      </Row>
       <br>
       <Row>
         <Table border
@@ -205,42 +205,42 @@ export default {
         {
           title: '标签',
           key: 'tags',
-          width: 120
+          width: '100%'
         },
         {
           title: 'IP地址',
           key: 'host',
-          width: 150
+          width: '120%'
         },
         {
           title: '端口',
           key: 'port',
-          width: 80
+          width: '80%'
         },
         {
           title: 'Redis版本',
           key: 'redis_version',
-          width: 100
+          width: '100%'
         },
         {
           title: '角色',
           key: 'role',
-          width: 90
+          width: '100%'
         },
         {
           title: '架构',
           key: 'architecture',
-          width: 120
+          width: '100%'
         },
         {
           title: '业务系统',
           key: 'bussiness_system',
-          width: 120
+          width: '100%'
         },
         {
           title: '系统等级',
           key: 'system_level',
-          width: 120,
+          width: '110%',
           render: (h, params) => {
             const levelMap = {
               0: { color: 'red', desc: '核心系统' },
@@ -254,7 +254,7 @@ export default {
         {
           title: '操作',
           key: 'action',
-          width: 200,
+          // width: 200,
           align: 'center',
           render: (h, params) => {
             console.log('redis删除操作传来的params值为：', params)
@@ -519,7 +519,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .demo-drawer-footer {
   width: 100%;
   position: absolute;
@@ -529,5 +529,9 @@ export default {
   padding: 10px 16px;
   text-align: right;
   background: #fff;
+}
+
+.ivu-table-wrapper{
+  margin: 0 auto 0 auto;
 }
 </style>

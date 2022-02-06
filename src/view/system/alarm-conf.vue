@@ -1,19 +1,19 @@
 <template>
   <Row>
+    <Row>
+      <!--        todo 暂时不用-->
+      <!--        <Button @click="add"-->
+      <!--                v-if="addAccessAll"-->
+      <!--                type="primary">添加</Button>&nbsp;-->
+      <Input v-model="alarm_name_search"
+             placeholder="告警名称"
+             style="width: 200px" />&nbsp;
+      <Button @click="search"
+              type="primary">搜索</Button>&nbsp;
+      <Button @click="clear_search"
+              type="success">刷新</Button>
+    </Row>
     <Card>
-      <Row>
-<!--        todo 暂时不用-->
-<!--        <Button @click="add"-->
-<!--                v-if="addAccessAll"-->
-<!--                type="primary">添加</Button>&nbsp;-->
-        <Input v-model="alarm_name_search"
-               placeholder="告警名称"
-               style="width: 200px" />&nbsp;
-        <Button @click="search"
-                type="primary">搜索</Button>&nbsp;
-        <Button @click="clear_search"
-                type="success">刷新</Button>
-      </Row>
       <br>
       <Row>
         <Table border
@@ -156,20 +156,20 @@ export default {
       columns: [
         {
           type: 'index',
-          width: 80,
+          width: '80%',
           align: 'center',
           sortable: true
         },
         {
           title: '告警类型',
           key: 'type',
-          width: 160,
+          width: '120%',
           render: (h, params) => {
             const typeMap = {
-              1: { desc: 'Oracle数据库' },
               2: { desc: 'MySQL数据库' },
               3: { desc: 'Redis' },
-              4: { desc: 'Linux主机' }
+              4: { desc: 'Linux主机' },
+              5: {desc: 'Windows主机'}
             }
             const type = params.row.type
             return h('div', typeMap[type]['desc'])
@@ -178,23 +178,23 @@ export default {
         {
           title: '告警名称',
           key: 'name',
-          width: 240
+          width: '180%'
         },
         {
           title: '运算符',
           key: 'judge',
-          width: 120
+          width: '180%'
         },
         {
           title: '阈值',
           key: 'judge_value',
-          width: 120
+          width: '200%'
         },
         {
           title: '阈值说明',
-          key: 'judge_des',
-          width: 215
-        },
+          key: 'judge_des'
+          // width: 215
+        }
         // todo 暂时不用
         // {
         //   title: '操作',
@@ -436,7 +436,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .demo-drawer-footer {
   width: 100%;
   position: absolute;
@@ -446,5 +446,9 @@ export default {
   padding: 10px 16px;
   text-align: right;
   background: #fff;
+}
+
+.ivu-table-wrapper{
+  margin: 0 auto 0 auto;
 }
 </style>

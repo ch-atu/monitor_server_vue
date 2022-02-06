@@ -46,7 +46,7 @@ export default {
         },
         {
           title: '标签',
-          width: 100,
+          width: '80%',
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -62,53 +62,63 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: 150,
+          width: '120%',
           sortable: true
         },
         {
           title: '端口',
           key: 'port',
-          width: 80
+          width: '80%'
         },
         {
           title: '版本',
           key: 'version',
-          width: 100
+          width: '100%'
         },
         {
           title: '运行天数',
           key: 'updays',
-          width: 90
+          width: '100%'
         },
         {
           title: '连接线程数',
           key: 'threads_connected',
-          width: 100
+          width: '100%'
         },
         {
           title: '活动线程数',
           key: 'threads_running',
-          width: 100
+          width: '100%'
         },
         {
           title: '等待线程数',
           key: 'threads_waited',
-          width: 100
+          width: '100%'
         },
+        // {
+        //   title: 'QPS',
+        //   key: 'qps',
+        //   width: 70
+        // },
+        // {
+        //   title: 'TPS',
+        //   key: 'tps',
+        //   width: 70
+        // },
         {
-          title: 'QPS',
-          key: 'qps',
-          width: 70
-        },
-        {
-          title: 'TPS',
-          key: 'tps',
-          width: 70
+          title: '采集时间',
+          key: 'check_time',
+          // width: 140,
+          render: (h, params) => {
+            return h('div',
+              formatDate(new Date(params.row.check_time), 'yyyy-MM-dd hh:mm')
+            )
+          }
         },
         {
           title: '状态',
           key: 'status',
-          width: 90,
+          width: '100%',
           render: (h, params) => {
             const levelMap = {
               0: { color: 'green', desc: '正常' },
@@ -116,19 +126,10 @@ export default {
             }
             const status = params.row.status
             return h(Tag, { props: { color: levelMap[status]['color'] } }, levelMap[status]['desc'])
-          },
-          fixed: 'right'
-        },
-        {
-          title: '采集时间',
-          key: 'check_time',
-          width: 140,
-          render: (h, params) => {
-            return h('div',
-              formatDate(new Date(params.row.check_time), 'yyyy-MM-dd hh:mm')
-            )
           }
+          // fixed: 'right'
         }
+
       ],
       data: [],
       count: 0,
@@ -187,7 +188,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .demo-drawer-footer {
   width: 100%;
   position: absolute;
@@ -205,5 +206,9 @@ export default {
 .ivu-table .demo-table-info-cell-mormal {
   background-color: #22d489;
   color: #fff;
+}
+
+.ivu-table-wrapper{
+  margin: 0 auto 0 auto;
 }
 </style>

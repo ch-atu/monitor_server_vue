@@ -1,7 +1,24 @@
 <template>
   <div>
     <Row :gutter="10">
-      <i-col :md="24" :lg="8" style="margin-bottom: 20px">
+      <i-col :md="24" :lg="6" style="margin-bottom: 20px">
+        <Card shadow>
+          <p slot="title" style="font-size: larger">
+            <Icon type="ios-pie"></Icon>
+            Windows
+          </p>
+          <p style="font-size: small; color: black">
+            总数量：{{ this.windows_count}}
+          </p>
+          <chart-pie3
+            style="height: 160px"
+            :value="WindowsData"
+            text="Windows"
+          ></chart-pie3>
+        </Card>
+      </i-col>
+
+      <i-col :md="24" :lg="6" style="margin-bottom: 20px">
         <Card shadow>
           <p slot="title" style="font-size: larger">
             <Icon type="ios-pie"></Icon>
@@ -17,7 +34,8 @@
           ></chart-pie3>
         </Card>
       </i-col>
-      <i-col :md="24" :lg="8" style="margin-bottom: 20px">
+
+      <i-col :md="24" :lg="6" style="margin-bottom: 20px">
         <Card shadow>
           <p slot="title" style="font-size: larger">
             <Icon type="ios-pie"></Icon>
@@ -33,7 +51,8 @@
           ></chart-pie3>
         </Card>
       </i-col>
-      <i-col :md="24" :lg="8" style="margin-bottom: 20px">
+
+      <i-col :md="24" :lg="6" style="margin-bottom: 20px">
         <Card shadow>
           <p slot="title" style="font-size: larger">
             <Icon type="ios-pie"></Icon>
@@ -49,6 +68,7 @@
           ></chart-pie3>
         </Card>
       </i-col>
+
       <i-col span="12">
         <card>
           <p slot="title" style="font-size: larger">
@@ -76,7 +96,8 @@
 <script>
 import { CountTo } from '_c/count-to'
 import { ChartPie, ChartBar, ChartPie3 } from '_c/charts'
-import { getAlarmInfo, getExportAlarmInfo } from '@/api/system'
+import { getExportAlarmInfo } from '@/api/system'
+import {getWindowsStatList} from '@/api/windows'
 import { getLinuxStatList } from '@/api/linux'
 import { getMysqlStatList } from '@/api/mysql'
 import { getRedisStatList } from '@/api/redis'
@@ -92,43 +113,37 @@ export default {
   },
   data () {
     return {
+      WindowsData: [],
       LinuxData: [],
       MysqlData: [],
       RedisData: [],
       alarminfoList: [],
+      windows_stat_list: [],
       linuxstatList: [],
       mysqlstatList: [],
+      redisstatList: [],
       alarm_count: null,
       linux_count: null,
       mysql_count: null,
-      redis_count: null
+      redis_count: null,
+      windows_count: null
     }
   },
   created () {
-    // this.get_alarm_info()
     this.get_export_alarm_info()
+    this.get_windows_stat_list()
     this.get_linux_stat_list()
     this.get_mysql_stat_list()
     this.get_redis_stat_list()
     this.timer = setInterval(() => {
-      this.get_alarm_info()
+      this.get_export_alarm_info()
+      this.get_windows_stat_list()
       this.get_linux_stat_list()
       this.get_mysql_stat_list()
       this.get_redis_stat_list()
     }, 1000 * 20)
   },
   methods: {
-    // get_alarm_info (parameter) {
-    //   getAlarmInfo(parameter)
-    //     .then((res) => {
-    //       this.alarminfoList = res.data.results
-    //       this.alarm_count = res.data.count
-    //       console.log('获取的告警信息列表=======================:', this.alarminfoList)
-    //     })
-    //     .catch((err) => {
-    //       this.$Message.error(`获取告警信息错误 ${err}`)
-    //     })
-    // },
     get_export_alarm_info () {
       // 初始化时默认查询当天告警信息
       getExportAlarmInfo(`day=1`).then(res => {
@@ -138,16 +153,16 @@ export default {
         this.$Message.error(`获取告警信息错误！${err}`)
       })
     },
-    get_linux_stat_list (parameter) {
-      getLinuxStatList(parameter)
+    get_windows_stat_list (parameter) {
+      getWindowsStatList(parameter)
         .then((res) => {
-          this.linuxstatList = res.data.results
-          this.linux_count = res.data.count
-          this.LinuxData = statuscheck(this.linuxstatList)
-          console.log(this.linux_stat_list)
+          this.windows_stat_list = res.data.results
+          this.windows_count = res.data.count
+          this.WindowsData = statuscheck(this.windows_stat_list)
+          console.log(this.windows_stat_list)
         })
         .catch((err) => {
-          this.$Message.error(`获取linux状态列表错误 ${err}`)
+          this.$Message.error(`获取windows状态列表错误 ${err}`)
         })
     },
     get_mysql_stat_list (parameter) {
@@ -172,6 +187,17 @@ export default {
         })
         .catch((err) => {
           this.$Message.error(`获取redis状态列表错误 ${err}`)
+        })
+    },
+    get_linux_stat_list(parameter){
+      getLinuxStatList(parameter)
+        .then((res) => {
+          this.linuxstatList = res.data.results
+          this.linux_count = res.data.count
+          this.LinuxData = statuscheck(this.linuxstatList)
+        })
+        .catch((err) => {
+          this.$Message.error(`获取linux状态列表错误 ${err}`)
         })
     }
   },

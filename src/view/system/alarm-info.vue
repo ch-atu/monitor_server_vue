@@ -8,13 +8,14 @@
          <Button icon="md-download" :loading="exportLoading" @click="exportExcel">导出文件</Button>
          <day-select style="margin-left: 5px" @change_select="get_select_alarm_info"></day-select>
           <Card>
+            <br>
               <Table size="small"
                      :columns="columns"
                      :data="data">
               </Table>
               <br>
               <Page :total="count"
-                    :page_size='page_size'
+                    :page-size='page_size'
                     @on-change="get_export_alarm_info_page"
                     show-elevator
                     show-total />
@@ -42,33 +43,33 @@ export default {
       columns: [
         {
           type: 'index',
-          width: 60,
+          width: '50%',
           align: 'center'
         },
         {
           title: '标签',
           key: 'tags',
-          width: 80
+          width: '100%'
         },
         {
           title: '告警名称',
           key: 'alarm_type',
-          width: 150
+          width: '150%'
         },
         {
           title: '服务地址',
           key: 'url',
-          width: 120
+          width: '120%'
         },
         {
           title: '告警内容',
-          key: 'alarm_content',
-          width: 400
+          key: 'alarm_content'
+          // width: 400
         },
         {
           title: '告警时间',
           key: 'alarm_time',
-          width: 140,
+          // width: 140,
           sortable: true,
           render: (h, params) => {
             return h('div', formatDate(new Date(params.row.alarm_time), 'yyyy-MM-dd hh:mm')
@@ -100,26 +101,9 @@ export default {
     }
   },
   created () {
-    // this.get_alarm_info()
     this.get_export_alarm_info()
   },
   methods: {
-    // get_alarm_info (parameter) {
-    //   console.log('parameter的值是：',parameter);
-    //   getAlarmInfo(parameter).then(res => {
-    //     this.data = res.data.results
-    //     this.count = res.data.count
-    //     // console.log('hello!!!');
-    //     console.log('获取到的data数据是', this.data)
-    //   }).catch(err => {
-    //     this.$Message.error(`获取告警信息错误 ${err}`)
-    //   })
-    // },
-    // get_alarm_info_parameter (parameter) {
-    //   console.log('get_alarm_info_parameter:', parameter)
-    //   this.get_alarm_info(`page=${parameter}`)
-    // },
-
     // 新增导入表格
     exportExcel () {
       if (this.exportData.length) {
@@ -170,7 +154,7 @@ export default {
     get_select_alarm_info (val) {
       this.day = val
       getExportAlarmInfo(`day=${val}`).then(res => {
-        // this.exportData = res.data.results
+        console.log('getExportAlarmInfo的res值为：', res)
         this.data = res.data.results
         this.count = res.data.count
       }).catch(err => {
@@ -191,23 +175,8 @@ export default {
 }
 </script>
 <style scoped>
-/*.demo-drawer-footer {*/
-/*  width: 100%;*/
-/*  position: absolute;*/
-/*  bottom: 0;*/
-/*  left: 0;*/
-/*  border-top: 1px solid #e8e8e8;*/
-/*  padding: 10px 16px;*/
-/*  text-align: right;*/
-/*  background: #fff;*/
-/*}*/
-/*.ivu-table .demo-table-info-cell-danger {*/
-/*  background-color: #d40f35;*/
-/*  color: #fff;*/
-/*}*/
-/*.ivu-table .demo-table-info-cell-mormal {*/
-/*  background-color: #22d489;*/
-/*  color: #fff;*/
-/*}*/
+.ivu-table-wrapper{
+  margin: 0 auto 0 auto;
+}
 
 </style>
