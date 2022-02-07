@@ -105,12 +105,12 @@ export default {
         {
           title: '磁盘',
           key: 'mount_point',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '使用率',
           key: 'used_percent',
-          width: '100%',
+          minWidth: 100,
           render: (h, params) => {
             const used_percent = params.row.used_percent
             if (used_percent >= 95) {
@@ -129,19 +129,19 @@ export default {
         {
           title: '剩余空间(GB)',
           key: 'free_size',
-          // width: 120
+          minWidth: 100
         }
       ],
       columnsAlarm: [
         {
           title: '告警内容',
           key: 'alarm_content',
-          width: 250
+          minWidth: 250
         },
         {
           title: '告警时间',
           key: 'alarm_header',
-          // width: 140,
+          minWidth: 140,
           render: (h, params) => {
             return h('div',
               formatDate(new Date(params.row.alarm_time), 'yyyy-MM-dd hh:mm')

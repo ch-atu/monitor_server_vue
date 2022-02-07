@@ -41,12 +41,12 @@ export default {
       columns: [
         {
           type: 'index',
-          width: 60,
+          minWidth: 60,
           align: 'center'
         },
         {
           title: '标签',
-          width: '80%',
+          minWidth: 80,
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -62,38 +62,38 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: '120%',
+          minWidth: 120,
           sortable: true
         },
         {
           title: '端口',
           key: 'port',
-          width: '80%'
+          minWidth: 80
         },
         {
           title: '版本',
           key: 'version',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '运行天数',
           key: 'updays',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '连接线程数',
           key: 'threads_connected',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '活动线程数',
           key: 'threads_running',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '等待线程数',
           key: 'threads_waited',
-          width: '100%'
+          minWidth: 100
         },
         // {
         //   title: 'QPS',
@@ -108,7 +108,7 @@ export default {
         {
           title: '采集时间',
           key: 'check_time',
-          // width: 140,
+          minWidth: 200,
           render: (h, params) => {
             return h('div',
               formatDate(new Date(params.row.check_time), 'yyyy-MM-dd hh:mm')
@@ -118,7 +118,7 @@ export default {
         {
           title: '状态',
           key: 'status',
-          width: '100%',
+          minWidth: 100,
           render: (h, params) => {
             const levelMap = {
               0: { color: 'green', desc: '正常' },

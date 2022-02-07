@@ -72,7 +72,7 @@ export default {
             {
               title: 'size',
               key: 'innodb_buffer_pool_size',
-              width: 150,
+              minWidth: 150,
               align: 'center',
               render: (h, params) => {
                 const key_buffer_size = params.row.key_buffer_size
@@ -89,31 +89,31 @@ export default {
               title: 'total',
               key: 'innodb_buffer_pool_pages_total',
               align: 'center',
-              width: 70
+              minWidth: 70
             },
             {
               title: 'data',
               key: 'innodb_buffer_pool_pages_data',
               align: 'center',
-              width: 70
+              minWidth: 70
             },
             {
               title: 'dirty',
               key: 'innodb_buffer_pool_pages_dirty',
               align: 'center',
-              width: 70
+              minWidth: 70
             },
             {
               title: 'flushed',
               key: 'innodb_buffer_pool_pages_flushed',
               align: 'center',
-              width: 90
+              minWidth: 90
             },
             {
               title: 'free',
               key: 'innodb_buffer_pool_pages_free',
               align: 'center',
-              width: 70
+              minWidth: 70
             }
           ]
         },
@@ -125,19 +125,19 @@ export default {
               title: 'capacity',
               key: 'innodb_io_capacity',
               align: 'center',
-              width: 90
+              minWidth: 90
             },
             {
               title: 'read_thread',
               key: 'innodb_read_io_threads',
               align: 'center',
-              width: 110
+              minWidth: 110
             },
             {
               title: 'write_thread',
               key: 'innodb_write_io_threads',
               align: 'center',
-              width: 110
+              minWidth: 110
             }
           ]
         },
@@ -149,25 +149,25 @@ export default {
               title: 'read',
               key: 'innodb_rows_read',
               align: 'center',
-              width: 70
+              minWidth: 70
             },
             {
               title: 'insert',
               key: 'innodb_rows_inserted',
               align: 'center',
-              width: 70
+              minWidth: 70
             },
             {
               title: 'update',
               key: 'innodb_rows_updated',
               align: 'center',
-              width: 80
+              minWidth: 80
             },
             {
               title: 'delete',
               key: 'innodb_rows_deleted',
               align: 'center',
-              width: 80
+              minWidth: 80
             }
           ]
         }

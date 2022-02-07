@@ -277,32 +277,32 @@ export default {
         {
           title: '标签',
           key: 'tags',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: 'IP地址',
           key: 'host',
-          width: '120%'
+          minWidth: 120
         },
         {
           title: '端口号',
           key: 'port',
-          width: '80%'
+          minWidth: 80
         },
         {
           title: '数据库版本',
           key: 'db_version',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '角色',
           key: 'db_role',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '只读',
           key: 'readonly',
-          width: '100%',
+          minWidth: 100,
           render: (h, params) => {
             const Map = {
               0: { desc: 'ON' },
@@ -314,17 +314,17 @@ export default {
         {
           title: '架构',
           key: 'architecture',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '业务系统',
           key: 'bussiness_system',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '系统等级',
           key: 'system_level',
-          width: '110%',
+          minWidth: 110,
           render: (h, params) => {
             const levelMap = {
               0: { color: 'red', desc: '核心系统' },
@@ -338,7 +338,7 @@ export default {
         {
           title: '操作',
           key: 'action',
-          // width: 200,
+          minWidth: 200,
           align: 'center',
           render: (h, params) => {
             console.log('mysql操作中的params值为：', params)

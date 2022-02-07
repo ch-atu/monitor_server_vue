@@ -41,12 +41,12 @@ export default {
       columns: [
         {
           type: 'index',
-          width: '50%',
+          minWidth: 50,
           align: 'center'
         },
         {
           title: '标签',
-          width: '80%',
+          minWidth: 80,
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -62,23 +62,23 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: '120%',
+          minWidth: 120,
           sortable: true
         },
         {
           title: '端口',
           key: 'port',
-          width: '80%'
+          minWidth: 80
         },
         {
           title: '版本',
           key: 'version',
-          width: '80%'
+          minWidth: 80
         },
         {
           title: '运行天数',
           key: 'updays',
-          width: '100%'
+          minWidth: 100
         },
         // {
         //   title: '对象数',
@@ -88,7 +88,7 @@ export default {
         {
           title: '最大内存配置',
           key: 'maxmemory',
-          width: '110%',
+          minWidth: 110,
           render: (h, params) => {
             const maxmemory = Number(params.row.maxmemory / 1024 / 1024).toFixed(2)
             return h('div', maxmemory + 'MB')
@@ -97,7 +97,7 @@ export default {
         {
           title: '内存使用率',
           key: 'maxmemory,used_memory',
-          width: '100%',
+          minWidth: 100,
           render: (h, params) => {
             const maxmemory = Number(params.row.maxmemory / 1024 / 1024).toFixed(2)
             const used_memory = params.row.used_memory
@@ -126,17 +126,17 @@ export default {
         {
           title: '连接数',
           key: 'connected_clients',
-          width: '75%'
+          minWidth: 75
         },
         {
           title: '角色',
           key: 'role',
-          width: '75%'
+          minWidth: 75
         },
         {
           title: '采集时间',
           key: 'check_time',
-          // width: 140,
+          minWidth: 200,
           render: (h, params) => {
             return h('div',
               formatDate(new Date(params.row.check_time), 'yyyy-MM-dd hh:mm')
@@ -146,7 +146,7 @@ export default {
         {
           title: '状态',
           key: 'status',
-          width: '85%',
+          minWidth: 85,
           render: (h, params) => {
             const levelMap = {
               0: { color: 'green', desc: '正常' },

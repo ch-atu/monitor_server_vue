@@ -41,12 +41,12 @@ export default {
       columns: [
         {
           type: 'index',
-          width: '50%',
+          minWidth: 50,
           align: 'center'
         },
         {
           title: '标签',
-          width: '80%',
+          minWidth: 80,
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -62,28 +62,28 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: '120%',
+          minWidth: 120,
           sortable: true
         },
         {
           title: '主机名',
           key: 'hostname',
-          width: '130%'
+          minWidth: 130
         },
         {
           title: '运行天数',
           key: 'updays',
-          width: '85%'
+          minWidth: 85
         },
         {
           title: 'load',
           key: 'load1',
-          width: '80%'
+          minWidth: 80
         },
         {
           title: 'CPU使用率',
           key: 'cpu_used',
-          width: '100%',
+          minWidth: 100,
           render: (h, params) => {
             const cpu_used = params.row.cpu_used
             if (cpu_used >= 90) {
@@ -102,7 +102,7 @@ export default {
         {
           title: '内存使用率',
           key: 'mem_used',
-          width: '100%',
+          minWidth: 100,
           render: (h, params) => {
             const mem_used = params.row.mem_used
             if (mem_used >= 90) {
@@ -121,7 +121,7 @@ export default {
         {
           title: '采集时间',
           key: 'check_time',
-          // width: '100%',
+          minWidth: 200,
           render: (h, params) => {
             console.log('h的值：', h)
             console.log('params的值是：', params)
@@ -133,7 +133,7 @@ export default {
         {
           title: '状态',
           key: 'status',
-          width: '100%',
+          minWidth: 100,
           render: (h, params) => {
             const levelMap = {
               0: { color: 'green', desc: '正常' },

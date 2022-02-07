@@ -43,33 +43,33 @@ export default {
       columns: [
         {
           type: 'index',
-          width: '50%',
+          minWidth: 50,
           align: 'center'
         },
         {
           title: '标签',
           key: 'tags',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '告警名称',
           key: 'alarm_type',
-          width: '150%'
+          minWidth: 150
         },
         {
           title: '服务地址',
           key: 'url',
-          width: '120%'
+          minWidth: 120
         },
         {
           title: '告警内容',
-          key: 'alarm_content'
-          // width: 400
+          key: 'alarm_content',
+          minWidth: 400
         },
         {
           title: '告警时间',
           key: 'alarm_time',
-          // width: 140,
+          minWidth: 140,
           sortable: true,
           render: (h, params) => {
             return h('div', formatDate(new Date(params.row.alarm_time), 'yyyy-MM-dd hh:mm')

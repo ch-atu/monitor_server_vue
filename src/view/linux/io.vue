@@ -62,39 +62,39 @@ export default {
       columns: [
         {
           type: 'index',
-          width: '50%',
+          minWidth: 50,
           align: 'center'
         },
         {
           title: 'IP地址',
           key: 'host',
-          width: '120%',
+          minWidth: 120,
           sortable: true
         },
         {
           title: '挂载点',
           key: 'mount_point',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '目录大小(GB)',
           key: 'total_size',
-          width: '120%'
+          minWidth: 120
         },
         {
           title: '使用空间(GB)',
           key: 'used_size',
-          width: '120%'
+          minWidth: 120
         },
         {
           title: '剩余空间(GB)',
           key: 'free_size',
-          width: '120%'
+          minWidth: 120
         },
         {
           title: '使用率',
           key: 'used_percent',
-          width: '100%',
+          minWidth: 100,
           render: (h, params) => {
             const used_percent = params.row.used_percent
             if (used_percent >= 95) {
@@ -113,12 +113,12 @@ export default {
         {
           title: '设备',
           key: 'dev',
-          width: '100%'
+          minWidth: 100
         },
         {
           title: '采集时间',
           key: 'check_time',
-          // width: 140,
+          minWidth: 140,
           render: (h, params) => {
             return h('div',
               formatDate(new Date(params.row.check_time), 'yyyy-MM-dd hh:mm')

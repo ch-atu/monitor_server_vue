@@ -40,12 +40,12 @@ export default {
       columns: [
         {
           type: 'index',
-          width: '80%',
+          minWidth: 80,
           align: 'center'
         },
         {
           title: '标签',
-          width: '80%',
+          minWidth: 80,
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -61,23 +61,23 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: '120%',
+          minWidth: 120,
           sortable: true
         },
         {
           title: '主机名',
           key: 'hostname',
-          width: '130%'
+          minWidth: 130
         },
         {
           title: '运行天数',
           key: 'updays',
-          width: '116%'
+          minWidth: 120
         },
         {
           title: '虚拟内存使用率',
           key: 'virtual_mem_used_rate',
-          width: '130%',
+          minWidth: 130,
           render: (h, params) => {
             const virtual_mem_used_rate = params.row.virtual_mem_used_rate
             if (virtual_mem_used_rate >= 90) {
@@ -96,7 +96,7 @@ export default {
         {
           title: 'CPU使用率',
           key: 'cpu_used_rate',
-          width: '100%',
+          minWidth: 100,
           render: (h, params) => {
             const cpu_used_rate = params.row.cpu_used_rate
             if (cpu_used_rate >= 90) {
@@ -115,7 +115,7 @@ export default {
         {
           title: '内存使用率',
           key: 'physical_mem_used_rate',
-          width: '100%',
+          minWidth: 100,
           render: (h, params) => {
             const physical_mem_used_rate = params.row.physical_mem_used_rate
             if (physical_mem_used_rate >= 90) {
@@ -134,7 +134,7 @@ export default {
         {
           title: '采集时间',
           key: 'check_time',
-          // width: '100%',
+          minWidth: 200,
           render: (h, params) => {
             console.log('h的值：', h)
             console.log('params的值是：', params)
@@ -146,7 +146,7 @@ export default {
         {
           title: '状态',
           key: 'status',
-          width: '88%',
+          minWidth: 100,
           render: (h, params) => {
             const levelMap = {
               0: { color: 'green', desc: '正常' },

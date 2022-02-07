@@ -33,83 +33,83 @@ export default {
         {
           title: 'id',
           key: 'id',
-          width: 100,
+          minWidth: 100,
           sortable: true
         },
         {
           title: 'addr',
           key: 'addr',
-          width: 150
+          minWidth: 150
         },
         {
           title: 'age',
           key: 'age',
-          width: 100
+          minWidth: 100
         },
         {
           title: 'idle',
           key: 'idle',
-          width: 100
+          minWidth: 100
         },
         {
           title: 'flags',
           key: 'flags',
-          width: 80
+          minWidth: 80
         },
         {
           title: 'db',
           key: 'db',
-          width: 80
+          minWidth: 80
         },
         {
           title: 'sub',
           key: 'sub',
-          width: 80
+          minWidth: 80
         },
         {
           title: 'psub',
           key: 'psub',
-          width: 80
+          minWidth: 80
         },
         {
           title: 'multi',
           key: 'multi',
-          width: 80
+          minWidth: 80
         },
         {
           title: 'qbuf',
           key: 'qbuf',
-          width: 80
+          minWidth: 80
         },
         {
           title: 'qbuf-free',
           key: 'qbuf-free',
-          width: 100
+          minWidth: 100
         },
         {
           title: 'obl',
           key: 'obl',
-          width: 80
+          minWidth: 80
         },
         {
           title: 'oll',
           key: 'oll',
-          width: 80
+          minWidth: 80
         },
         {
           title: 'omem',
           key: 'omem',
-          width: 80
+          minWidth: 80
         },
         {
           title: 'events',
           key: 'events',
-          width: 80
+          minWidth: 80
         },
         {
           title: 'cmd',
           key: 'cmd',
-          width: 100
+          minWidth: 100
         }
       ],
       count: 0,

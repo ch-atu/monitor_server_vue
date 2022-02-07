@@ -156,14 +156,14 @@ export default {
       columns: [
         {
           type: 'index',
-          width: '80%',
+          minWidth: 80,
           align: 'center',
           sortable: true
         },
         {
           title: '告警类型',
           key: 'type',
-          width: '120%',
+          minWidth: 120,
           render: (h, params) => {
             const typeMap = {
               2: { desc: 'MySQL数据库' },
@@ -178,22 +178,22 @@ export default {
         {
           title: '告警名称',
           key: 'name',
-          width: '180%'
+          minWidth: 180
         },
         {
           title: '运算符',
           key: 'judge',
-          width: '180%'
+          minWidth: 180
         },
         {
           title: '阈值',
           key: 'judge_value',
-          width: '200%'
+          minWidth: 200
         },
         {
           title: '阈值说明',
-          key: 'judge_des'
-          // width: 215
+          key: 'judge_des',
+          minWidth: 215
         }
         // todo 暂时不用
         // {

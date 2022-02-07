@@ -43,13 +43,13 @@ export default {
         {
           title: '配置项',
           key: 'keyName',
-          width: 300,
+          minWidth: 300,
           sortable: true
         },
         {
           title: '配置值',
           key: 'valueName',
-          width: 600
+          minWidth: 600
         }
       ],
       data: {},

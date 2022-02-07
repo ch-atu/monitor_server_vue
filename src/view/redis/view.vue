@@ -124,12 +124,12 @@ export default {
         {
           title: '告警内容',
           key: 'alarm_content',
-          width: 250
+          minWidth: 250
         },
         {
           title: '告警时间',
           key: 'alarm_header',
-          width: 140,
+          minWidth: 140,
           render: (h, params) => {
             return h('div',
               formatDate(new Date(params.row.alarm_time), 'yyyy-MM-dd hh:mm')
