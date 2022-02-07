@@ -14,7 +14,7 @@ Vue.use(Router)
 //创建路由对象
 const router = new Router({
   routes,
-  // mode: 'history'
+  mode: 'history'
 })
 const LOGIN_PAGE_NAME = 'login'
 
