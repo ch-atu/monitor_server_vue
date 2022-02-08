@@ -348,7 +348,7 @@ export default {
         {
           title: '操作',
           key: 'action',
-          minWidth: 120,
+          minWidth: 200,
           align: 'center',
           render: (h, params) => {
             console.log('操作中的params的值是：', params)
