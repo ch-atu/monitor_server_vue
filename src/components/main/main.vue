@@ -18,7 +18,7 @@
         <div class="logo-con">
           <img v-show="!collapsed"
                :src="zhLogo"
-               key="fdy-logo"  alt="泛地缘监控平台"/>
+               key="fdy-logo"  alt="卓豪监控平台"/>
         </div>
       </side-menu>
     </Sider>
